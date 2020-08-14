@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+rofi -show drun -font 'Futura Bk BT 15' -color-window '#ffffff,#cdd2d7' -color-normal '#ffffff,#737c90,#ffffff,#5294e2,#fffff' -bw 2 -hide-scrollbar -width -90 -padding 50 -line-margin 6 -separator-style none
