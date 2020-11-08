@@ -13,38 +13,12 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 set pastetoggle=<F9>
-set showcmd
-set nohlsearch
 
-call plug#begin('~/.vim/plugged')
+" Tab configuration
+set showtabline=0
 
-Plug 'jparise/vim-graphql'
-Plug 'scrooloose/nerdtree'
-Plug 'crusoexia/vim-monokai'
-Plug 'skielbasa/vim-material-monokai'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-surround'
-Plug 'posva/vim-vue'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'mattn/emmet-vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'digitaltoad/vim-pug'
-Plug 'elixir-editors/vim-elixir'
-Plug 'vim-ruby/vim-ruby'
-Plug 'iamcco/markdown-preview.vim'
-Plug 'mzlogin/vim-markdown-toc'
-Plug 'nikvdp/ejs-syntax'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'arcticicestudio/nord-vim'
-Plug 'netsgnut/arctheme.vim'
-Plug 'tpope/vim-surround'
-
-call plug#end()
+" Statusline
+set statusline=
 
 syntax on
 
@@ -52,33 +26,72 @@ highlight clear
 highlight VertSplit cterm=NONE
 highlight NonText ctermfg=black
 highlight CursorLine cterm=NONE gui=NONE
-highlight NERDTreeCWD cterm=NONE
-highlight NERDTreeCWD cterm=NONE
 
+call plug#begin('~/.vim/plugged')
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'udalov/kotlin-vim'
+Plug 'cespare/vim-toml'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-rails'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'mxw/vim-jsx'
+Plug 'itchyny/vim-gitbranch'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'dag/vim-fish'
+call plug#end()
+
+" FZF Settings
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" Keybindings 
 map <F2> :w<CR>
-map <C-n> :NERDTreeToggle<CR>
+map <C-f> :FZF<CR>
 map <Home> :0<CR>
 map <End> :$<CR>
 map <F5> :e<CR>
-map <F3> :Files<CR>
 nnoremap <space> za
-map <C-space> tabn
-map <C-m> :MarkdownPreview<CR>
+map <C-b> :NERDTreeToggle<CR>
+map <F4> :echo @%<CR>
+map <F6> :echo gitbranch#name()<CR>
+map <F10> :so ~/.config/nvim/init.vim<CR>
 
-let NERDTreeQuitOnOpen = 0
-let NERDTreeCWD = 0
-let NERDTreeHighlightCursorline = 1
+" Netrw Setup
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 3
+let g:netrw_winsize = 20
+let g:netrw_altv = 1
+let g:netrw_browsex_viewer= "xdg-open"
+
+" Vim Note
+:let g:notes_directories = ['~/Documents/Notes']
+
+" NERDTree Setup
+let NERDTreeQuitOnOpen=1
+let NERDTreeMinimalUI = 1
 let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
                     \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
-                    \ '.*\.o$', 'db.db', 'tags.bak', '\.swp']
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 0
-let NERDChristmasTree = 1
-let NERDTreeChDirMode = 2
-let NERDTreeMapJumpFirstChild = 'gK'
-let NERDTreeWinSize=24
+                    \ '.*\.o$', 'db.db', 'tags.bak', '\.swp', '\.bs.js']
 
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
+" Hide things
+set shortmess+=F
+set noshowcmd
+set noruler
+set nohlsearch
+set laststatus=0
