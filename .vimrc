@@ -1,4 +1,5 @@
 set relativenumber
+set termguicolors
 set nu rnu
 set tabstop=2
 set expandtab
@@ -6,13 +7,20 @@ set shiftwidth=2
 set wildignore+=*.swp
 set nowrap
 set breakindent
-set cursorline
 set lazyredraw
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent
 set pastetoggle=<F9>
+set nocursorline
+
+" Hide things
+set shortmess+=F
+set noshowcmd
+set noruler
+set nohlsearch
+set laststatus=0
 
 " Tab configuration
 set showtabline=0
@@ -23,11 +31,12 @@ set statusline=
 syntax on
 
 highlight clear
-highlight VertSplit cterm=NONE
-highlight NonText ctermfg=black
+highlight VertSplit cterm=NONE gui=NONE
+highlight NonText ctermfg=black gui=NONE
 highlight CursorLine cterm=NONE gui=NONE
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'udalov/kotlin-vim'
@@ -41,6 +50,8 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'dag/vim-fish'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 call plug#end()
 
 " FZF Settings
@@ -88,10 +99,3 @@ let NERDTreeMinimalUI = 1
 let NERDTreeIgnore = ['\~$', '.*\.pyc$', 'pip-log\.txt$', 'whoosh_index',
                     \ 'xapian_index', '.*.pid', 'monitor.py', '.*-fixtures-.*.json',
                     \ '.*\.o$', 'db.db', 'tags.bak', '\.swp', '\.bs.js']
-
-" Hide things
-set shortmess+=F
-set noshowcmd
-set noruler
-set nohlsearch
-set laststatus=0
