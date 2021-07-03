@@ -1,5 +1,4 @@
 set relativenumber
-set termguicolors
 set nu rnu
 set tabstop=2
 set expandtab
@@ -14,6 +13,7 @@ set foldnestmax=10
 set foldmethod=indent
 set pastetoggle=<F9>
 set nocursorline
+set noswapfile
 
 " Hide things
 set shortmess+=F
@@ -30,7 +30,6 @@ set statusline=
 
 syntax on
 
-highlight clear
 highlight VertSplit cterm=NONE gui=NONE
 highlight NonText ctermfg=black gui=NONE
 highlight CursorLine cterm=NONE gui=NONE
@@ -51,6 +50,7 @@ Plug 'xolox/vim-misc'
 Plug 'reasonml-editor/vim-reason-plus'
 Plug 'dag/vim-fish'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
