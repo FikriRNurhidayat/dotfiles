@@ -1,6 +1,10 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
+if exists(':lua')
+  luafile ~/.config/nvim/lua/plugins.lua
+  luafile ~/.config/nvim/lua/lsp/typescript.lua
+  luafile ~/.config/nvim/lua/plugins/nvim-tree.lua
+  luafile ~/.config/nvim/lua/plugins/nvim-treesitter.lua
+endif
 
-set fcs=eob:\ 
-set fillchars+=vert:\ 
+source ~/.config/nvim/config/keymap.vim
+source ~/.config/nvim/config/ui.vim
+source ~/.config/nvim/config/lsp/autoformat.vim
