@@ -1,0 +1,1 @@
+highlight TelescopeBorder guifg=#ffffff

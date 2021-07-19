@@ -1,8 +1,28 @@
 vim.g.nvim_tree_show_icons = {
+  files = 1,
   git = 0,
-  folders = 0,
-  files = 0,
-  folder_arrows = 0
+  folders = 1,
+}
+
+vim.g.nvim_tree_icons = {
+  default = '',
+  symlink = '',
+  folder = {
+    arrow_open = "",
+    arrow_closed = "",
+    default = "",
+    open = "",
+    empty = "",
+    empty_open = "",
+    symlink = "",
+    symlink_open = "",
+  },
+  lsp = {
+    hint = "",
+    info = "",
+    warning = "",
+    error = "",
+  }
 }
 
 vim.g.nvim_tree_quit_on_open = 1

@@ -20,6 +20,8 @@ set noswapfile
 
 " Hide things
 set shortmess+=F
+set shortmess+=I
+set shortmess+=q
 set noshowcmd
 set noruler
 set nohlsearch
@@ -32,12 +34,6 @@ set showtabline=0
 set statusline=
 
 syntax on
-
-highlight VertSplit cterm=NONE gui=NONE
-highlight NonText ctermfg=black guibg=black
-highlight CursorLine cterm=NONE gui=NONE
-highlight Pmenu cterm=NONE gui=NONE
-highlight NormalFloat ctermbg=black gui=NONE
 
 " Remove tilde
 set fcs=eob:\ 
