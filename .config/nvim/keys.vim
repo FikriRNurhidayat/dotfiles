@@ -24,7 +24,8 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 
 " Open file explorer
 nnoremap <silent> <leader>f :NvimTreeToggle<CR>
+nnoremap <silent> <C-b> :NvimTreeToggle<CR>
 
-source ~/.config/nvim/config/keymap/lsp-config.vim
-source ~/.config/nvim/config/keymap/autocomplete.vim
-source ~/.config/nvim/config/keymap/telescope.vim
+source $HOME/.config/nvim/keys/lsp.vim
+source $HOME/.config/nvim/keys/autocomplete.vim
+source $HOME/.config/nvim/keys/telescope.vim

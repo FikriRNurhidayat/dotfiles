@@ -4,6 +4,9 @@ vim.g.nvim_tree_show_icons = {
   folders = 1,
 }
 
+vim.g.nvim_tree_lsp_diagnostics = 1
+vim.g.nvim_tree_width = 50
+
 vim.g.nvim_tree_icons = {
   default = '',
   symlink = '',
