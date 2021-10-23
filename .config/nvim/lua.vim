@@ -2,13 +2,10 @@ luafile $HOME/.config/nvim/lua/packers.lua
 luafile $HOME/.config/nvim/lua/lsp/css.lua
 luafile $HOME/.config/nvim/lua/lsp/html.lua
 luafile $HOME/.config/nvim/lua/lsp/rust.lua
-"luafile $HOME/.config/nvim/lua/lsp/typescript.lua
 luafile $HOME/.config/nvim/lua/lsp/vue.lua
-luafile $HOME/.config/nvim/lua/plugins/github-nvim-theme.lua
+luafile $HOME/.config/nvim/lua/lsp/typescript.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-tree.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-treesitter.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-web-devicons.lua
-luafile $HOME/.config/nvim/lua/plugins/telescope.lua
-luafile $HOME/.config/nvim/lua/plugins/gitsigns.lua
-"luafile $HOME/.config/nvim/lua/plugins/bufferline.lua
+luafile $HOME/.config/nvim/lua/plugins/nvim-compe.lua
 luafile $HOME/.config/nvim/lua/colors/me.lua

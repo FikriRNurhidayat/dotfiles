@@ -18,13 +18,9 @@ set pastetoggle=<F9>
 set nocursorline
 set noswapfile
 
-au BufRead,BufNewFile *.md setlocal textwidth=80
-
 " Hide things
 set shortmess+=F
-set shortmess+=I
-set shortmess+=q
-" set noshowcmd
+set noshowcmd
 set noruler
 set nohlsearch
 set laststatus=0
@@ -36,6 +32,12 @@ set showtabline=0
 set statusline=
 
 syntax on
+
+highlight VertSplit cterm=NONE gui=NONE
+highlight NonText ctermfg=black guibg=black
+highlight CursorLine cterm=NONE gui=NONE
+highlight Pmenu cterm=NONE gui=NONE
+highlight NormalFloat ctermbg=black gui=NONE
 
 " Remove tilde
 set fcs=eob:\ 

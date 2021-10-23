@@ -6,50 +6,50 @@ if package.loaded['github-theme'] == nil then
   vim.cmd("highlight TelescopeMatching       guifg=blue")
   vim.cmd("highlight TelescopePromptPrefix   guifg=#ffffff")
 else
-  local configuration = require("github-theme.config")
-  local util = require("github-theme.util")
-  local config = configuration.config
-  local protocol = vim.lsp.protocol
+  -- local configuration = require("github-theme.config")
+  -- local util = require("github-theme.util")
+  -- local config = configuration.config
 
-  config.themeStyle = configuration.themeStyle
-  local colors = require("github-theme.colors").setup(config)
+  -- config.themeStyle = configuration.themeStyle
+  -- local colors = require("github-theme.colors").setup(config)
 
   -- Telescope
-  util.highlight("TelescopeBorder", { fg = colors.line_nr })
-  util.highlight("TelescopePromptBorder", { fg = colors.line_nr })
-  util.highlight("TelescopeResultsBorder", { fg = colors.line_nr })
-  util.highlight("TelescopePreviewBorder", { fg = colors.line_nr })
-  util.highlight("TelescopePromptPrefix", { fg = colors.line_nr })
-  util.highlight("TelescopeSelectionPrefix", { fg = colors.line_nr })
-  
-  util.highlight("VertSplit", { fg = "NONE", bg = "NONE" })
-  
-  -- Completion Icons
-  protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-  }
+  -- util.highlight("TelescopeBorder", { fg = colors.line_nr })
+  -- util.highlight("TelescopePromptBorder", { fg = colors.line_nr })
+  -- util.highlight("TelescopeResultsBorder", { fg = colors.line_nr })
+  -- util.highlight("TelescopePreviewBorder", { fg = colors.line_nr })
+  -- util.highlight("TelescopePromptPrefix", { fg = colors.line_nr })
+  -- util.highlight("TelescopeSelectionPrefix", { fg = colors.line_nr })
+  -- util.highlight("VertSplit", { fg = "NONE", bg = "NONE" })
 end
+
+local protocol = vim.lsp.protocol
+  
+-- Completion Icons
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
