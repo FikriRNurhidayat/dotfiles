@@ -191,7 +191,7 @@ By default our prompt doesn't display available properly, in fact it is hard to 
     :init (which-key-mode)
      :diminish which-key-mode
     :config
-    (setq which-key-idle-delay 0))
+    (setq which-key-idle-delay 1))
 
 #+end_src
 
