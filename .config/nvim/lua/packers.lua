@@ -20,8 +20,13 @@ return require('packer').startup(function()
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- Neovim Tree File Explorer
-  use 'kyazdani42/nvim-tree.lua' 
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons'
+  }
+
+  -- Kotlin
+  use 'udalov/kotlin-vim'
 
   -- Native Neovim LSP
   use 'neovim/nvim-lspconfig'
@@ -32,6 +37,9 @@ return require('packer').startup(function()
   -- Github Theme
   use 'projekt0n/github-nvim-theme'
 
+  -- Liquid
+  use 'tpope/vim-liquid'
+
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
@@ -40,17 +48,17 @@ return require('packer').startup(function()
 
   -- LSP Diagnostic
   -- Lua
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
+  -- use {
+  --   "folke/trouble.nvim",
+  --   requires = "kyazdani42/nvim-web-devicons",
+  --   config = function()
+  --     require("trouble").setup {
+  --       -- your configuration comes here
+  --       -- or leave it empty to use the default settings
+  --       -- refer to the configuration section below
+  --     }
+  --   end
+  -- }
 
   -- Vim Notes
   use { 'xolox/vim-notes', requires = 'xolox/vim-misc' }
@@ -62,4 +70,13 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim'
     }
   }
+
+  -- Rust
+  use 'rust-lang/rust.vim'
+
+  -- Surround
+  use 'tpope/vim-surround'
+
+  -- Rails
+  use { 'tpope/vim-rails' }
 end)

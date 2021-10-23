@@ -1,0 +1,391 @@
+#+TITLE: Emacs Configuration
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+
+Welcome to my emacs configuration. Take a look whatever you need.
+
+* Package Management Setup
+
+=use-package= will allow you to install package easily on various different source.
+
+#+begin_src emacs-lisp
+
+  (require 'package)
+
+  (setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
+                           ("melpa" . "https://melpa.org/packages/")
+                           ("org" . "https://orgmode.org/elpa/")
+                           ("elpa" . "https://elpa.gnu.org/packages/")))
+
+  (package-initialize)
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+
+#+end_src
+
+* UI Configuration
+
+We need to remove all unnecessary decoration on our emacs, to make it less noisy.
+
+** Disable unnecessary decoration
+
+Remove default decoration on emacs such as scroll bar, toolbar, etc.
+- =inhibit-startup-message= is being used to inhibit the startup message, if the value is non-nil, it will inhibit the startup screen.
+- =scroll-bar-mode= is a mode that will show the scrollbar on the emacs UI, by setting it into ~-1~ it will hide the scroll bar.
+- =tool-bar-mode= is a mode that will show the toolbar on the emacs UI, by setting it into ~-1~ it will hide the toolbar.
+- =menu-bar-mode= is a mode that will show the menubar on the emacs UI, by setting it into ~-1~ it will hide the menubar.
+- =set-fringe-mode= I have no idea what is this.
+
+#+begin_src emacs-lisp
+
+  (setq inhibit-startup-message t)
+  (scroll-bar-mode -1)            
+  (tool-bar-mode -1)              
+  (tooltip-mode -1)               
+  (set-fringe-mode 10)            
+  (menu-bar-mode -1)
+
+#+end_src
+
+** Global font configuration
+
+There's three kind of face attribute on emacs that we can setup
+- =default= face attribute
+- =fixed-pitch= face attribute a.k.a ~Mono~ font
+- =variable-pitch= face attribute a.k.a ~Variable Width~ font, being used on document like org-mode and manual.
+
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
+(set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
+(set-face-attribute 'variable-pitch nil :font "Noto Serif" :height 120)
+#+end_src
+** Global UI configuration
+
+Add more decoration that will improve our readability, such as line number and stuff.
+
+#+begin_src emacs-lisp
+(column-number-mode)
+(global-display-line-numbers-mode t)
+#+end_src
+
+*** Disable line number on certain mode
+
+#+begin_src emacs-lisp
+
+  (dolist (mode '(org-mode-hook
+                  term-mode-hook
+                  shell-mode-hook
+                  eshell-mode-hook
+                  neotree-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+#+end_src
+
+*** Add better modeline using =doom-modeline=
+
+=all-the-icons= is being used for the icon that will be shown up inside modeline. The =doom-modeline= is basically just a better modeline for our emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package all-the-icons)
+
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1)
+    :custom ((doom-modeline-height 32)))
+
+#+end_src
+
+*** Theming
+
+Install =doom-themes= we can easily install a lot of themes.
+
+#+begin_src emacs-lisp
+
+  (use-package doom-themes
+    :ensure t
+    :config
+    ;; Global settings (defaults)
+    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (load-theme 'doom-dracula t)
+
+    ;; Enable flashing mode-line on errors
+    (doom-themes-visual-bell-config)
+    ;; Enable custom neotree theme (all-the-icons must be installed!)
+    (doom-themes-neotree-config)
+    ;; or for treemacs users
+    (setq doom-themes-treemacs-theme "doom-dracula") ; use "doom-colors" for less minimal icon theme
+    (doom-themes-treemacs-config)
+    ;; Corrects (and improves) org-mode's native fontification.
+    (doom-themes-org-config))
+
+#+end_src
+
+*** Language Specific
+
+Add language specific styling such as =emacs-lisp=
+
+#+begin_src emacs-lisp
+
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode))
+
+#+end_src
+
+** Prompt UI
+
+By default our prompt doesn't display available properly, in fact it is hard to read, hence there's a package called =ivy= that will help you display proper prompt option. 
+
+*** Ivy
+
+=ivy= is package that we use to display available option as rows of option.
+
+#+begin_src emacs-lisp
+
+  (use-package ivy
+    :diminish
+    :bind (("C-s" . swiper)
+           :map ivy-minibuffer-map
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :config
+    (ivy-mode 1))
+
+#+end_src
+
+*** Counsel
+
+=counsel= is basically just a package that can provide you information about the option that is available for you.
+
+#+begin_src emacs-lisp
+
+  (use-package counsel
+    :bind (("M-x" . counsel-M-x)
+           ("C-x b" . counsel-ibuffer)
+           ("C-x C-f" . counsel-find-file)
+           :map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history)))
+#+end_src
+
+*** Which Keys
+
+=which-key= package will help you to define what next keystoke that you might want to press.
+
+#+begin_src emacs-lisp
+
+  (use-package which-key
+    :init (which-key-mode)
+     :diminish which-key-mode
+    :config
+    (setq which-key-idle-delay 0))
+
+#+end_src
+
+* Development
+
+There are bunch of package that will make our development process easier, so let's make me dependent to that package.
+
+** Projectile
+
+=projectile= is project buffer management
+- You can find project by name
+- You can find a file inside a project
+- You can setup =test= script to run the test inside your project
+- [[https://docs.projectile.mx/projectile/index.html][and more.]]
+
+=projectile= has a variable called =projectile-project-search-path= which tells where the projectile find the project directory or files. So you'd better set this to your own directory path.
+
+#+begin_src emacs-lisp
+
+  (use-package projectile
+    :diminish projectile-mode
+    :config (projectile-mode)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :init
+
+    (when (file-directory-p "~/Works")
+      (setq projectile-project-search-path '("~/Works")))
+    (setq projectile-switch-project-action #'projectile-dired))
+
+  (use-package counsel-projectile
+    :config (counsel-projectile-mode))
+
+ #+end_src
+
+** Magit
+
+=magit= is a git client written in =emacs-lisp= so you can easily use it inside emacs, in fact some people says that this is one of the killer feature of emacs, but I haven't found it to be true.
+
+#+begin_src emacs-lisp
+
+  (use-package magit
+    :custom
+    (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+#+end_src
+
+* Org Mode
+
+Org mode is a major mode that you can activate inside a buffer, this is a killer feature of emacs, you can do literate programming using org mode and more stuff.
+
+** Font Setup
+
+Since I probably use emacs inside its GUI client, then we can set multiple face attribute that will be rendered on the screen, this is very convenient. 
+
+#+begin_src emacs-lisp
+
+  (defun fain/org-font-setup ()
+      ;; Replace list hyphen with dot
+      (font-lock-add-keywords 'org-mode
+                              '(("^ *\\([-]\\) "
+                                  (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+      ;; Set faces for heading levels
+      (dolist (face '((org-level-1 . 1.0)
+                      (org-level-2 . 1.0)
+                      (org-level-3 . 1.0)
+                      (org-level-4 . 1.0)
+                      (org-level-5 . 1.0)
+                      (org-level-6 . 1.0)
+                      (org-level-7 . 1.0)
+                      (org-level-8 . 1.0)))
+
+      (set-face-attribute (car face) nil :font "Noto Sans" :weight 'bold :height (cdr face)))
+
+      ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+      (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+      (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+      (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+      (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+      (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+
+#+end_src
+
+** Setup Hooks
+
+This function is being used to setup default behaviour when we launch =org-mode=.
+
+#+begin_src emacs-lisp
+
+  (defun fain/org-mode-setup ()
+    (org-indent-mode 1)
+    (variable-pitch-mode 1)
+    (visual-line-mode 1))
+
+#+end_src
+
+** Configuration
+
+The =use-package= here is being used for setting up =org-mode= variables and hooks.
+
+#+begin_src emacs-lisp
+
+  (use-package org
+    :hook (org-mode . fain/org-mode-setup)
+    :config
+    (setq org-ellipsis "▾"
+          org-hide-emphasis-markers t
+          org-hide-leading-stars t
+          org-startup-indented t
+          org-pretty-entities t
+          org-fontify-whole-heading-line t
+          org-fontify-done-headline t
+          org-fontify-quote-and-verse-blocks t
+          org-export-backends '(ascii html icalendar latext md odt))
+    (fain/org-font-setup))
+
+#+end_src
+
+** Bullets
+
+Since the default stars can be annoying let's subtitute that using =org-bullets=
+
+#+begin_src emacs-lisp
+
+  (use-package org-bullets
+    :after org
+    :hook (org-mode . org-bullets-mode)
+    :custom
+     (org-bullets-bullet-list '("◉")))
+
+#+end_src
+
+** Column Mode
+
+Make =org-mode= being displayed like a true document, it has maximum width, and doesn't take up the entire screen.
+
+#+begin_src emacs-lisp
+
+  (defun fain/org-mode-visual-fill ()
+    (setq visual-fill-column-width 100
+          visual-fill-column-center-text t)
+    (visual-fill-column-mode 1))
+
+  (use-package visual-fill-column
+    :hook (org-mode . fain/org-mode-visual-fill))
+
+#+end_src
+
+* Keybindings
+
+I find it emacs default keybindings sucks. So I installed some package to cater that thing.
+
+** Make =ESC= quit prompts
+
+ =ESC= is being used as one of our keystroke on keybindings, sometime it is registered as keystroke chain, hence we need to make it to quit the prompts.
+
+ #+begin_src emacs-lisp
+
+   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+ #+end_src
+
+** Evil Mode
+
+I love vim, and probably you also do. Emacs has a package called =evil= which will make vim available on emacs. Also, not every package that we install has =evil= keybinding, hence you need to install additional package called =evil-collection=.
+
+#+begin_src emacs-lisp
+
+  (use-package evil
+    :init
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump nil)
+    :config
+    (evil-mode 1)
+    (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+    ;; Use visual line motions even outside of visual-line-mode buffers
+    (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+    (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+    (evil-set-initial-state 'messages-buffer-mode 'normal)
+    (evil-set-initial-state 'dashboard-mode 'normal))
+
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :pin melpa-stable
+    :config (evil-collection-init))
+
+#+end_src

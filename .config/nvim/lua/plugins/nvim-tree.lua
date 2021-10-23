@@ -1,12 +1,22 @@
+require('nvim-tree').setup({
+  update_cwd = true,
+  lsp_diagnostics = true,
+  view = {
+    width = 36,
+    height = 36,
+    side = 'left',
+    auto_resize = true
+  }
+})
+
 vim.g.nvim_tree_show_icons = {
-  files = 1,
   git = 0,
   folders = 1,
+  files = 1,
+  folder_arrows = 1,
 }
 
-vim.g.nvim_tree_lsp_diagnostics = 1
 vim.g.nvim_tree_width = 50
-
 vim.g.nvim_tree_icons = {
   default = '',
   symlink = '',
@@ -28,5 +38,4 @@ vim.g.nvim_tree_icons = {
   }
 }
 
-vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_ignore = { 'node_modules', '.cache' }

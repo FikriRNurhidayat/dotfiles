@@ -26,6 +26,10 @@ nnoremap <silent> <S-TAB> :bprevious<CR>
 nnoremap <silent> <leader>f :NvimTreeToggle<CR>
 nnoremap <silent> <C-b> :NvimTreeToggle<CR>
 
+" Get Highlight
+nnoremap <silent> <leader>o :call SynStack()<CR>
+
 source $HOME/.config/nvim/keys/lsp.vim
 source $HOME/.config/nvim/keys/autocomplete.vim
 source $HOME/.config/nvim/keys/telescope.vim
+source $HOME/.config/nvim/keys/bufferline.vim

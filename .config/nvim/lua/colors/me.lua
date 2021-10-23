@@ -11,7 +11,7 @@ else
   local config = configuration.config
   local protocol = vim.lsp.protocol
 
-  config.themeStyle = configuration.getThemeStyle()
+  config.themeStyle = configuration.themeStyle
   local colors = require("github-theme.colors").setup(config)
 
   -- Telescope
@@ -21,7 +21,9 @@ else
   util.highlight("TelescopePreviewBorder", { fg = colors.line_nr })
   util.highlight("TelescopePromptPrefix", { fg = colors.line_nr })
   util.highlight("TelescopeSelectionPrefix", { fg = colors.line_nr })
-
+  
+  util.highlight("VertSplit", { fg = "NONE", bg = "NONE" })
+  
   -- Completion Icons
   protocol.CompletionItemKind = {
     '', -- Text
