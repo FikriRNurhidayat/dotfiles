@@ -1,5 +1,6 @@
 #+TITLE: Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+#+STARTUP: contents
 
 Welcome to my emacs configuration. Take a look whatever you need.
 
@@ -64,6 +65,7 @@ There's three kind of face attribute on emacs that we can setup
 (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
 (set-face-attribute 'variable-pitch nil :font "Noto Serif" :height 120)
 #+end_src
+
 ** Global UI configuration
 
 Add more decoration that will improve our readability, such as line number and stuff.
@@ -81,7 +83,7 @@ Add more decoration that will improve our readability, such as line number and s
                   term-mode-hook
                   shell-mode-hook
                   eshell-mode-hook
-                  neotree-mode-hook))
+		     compilation-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 #+end_src
@@ -211,20 +213,21 @@ There are bunch of package that will make our development process easier, so let
 
 #+begin_src emacs-lisp
 
-  (use-package projectile
-    :diminish projectile-mode
-    :config (projectile-mode)
-    :custom ((projectile-completion-system 'ivy))
-    :bind-keymap
-    ("C-c p" . projectile-command-map)
-    :init
+    (use-package projectile
+      :diminish projectile-mode
+      :config (projectile-mode)
+      :custom ((projectile-completion-system 'ivy))
+      :bind-keymap
+      ("C-c p" . projectile-command-map)
+      :init
 
-    (when (file-directory-p "~/Works")
-      (setq projectile-project-search-path '("~/Works")))
-    (setq projectile-switch-project-action #'projectile-dired))
+      (when (file-directory-p "~/Works")
+        (setq projectile-project-search-path '("~/Works"
+                                               "~/Repositories")))
+      (setq projectile-switch-project-action #'projectile-dired))
 
-  (use-package counsel-projectile
-    :config (counsel-projectile-mode))
+    (use-package counsel-projectile
+      :config (counsel-projectile-mode))
 
  #+end_src
 
@@ -240,11 +243,49 @@ There are bunch of package that will make our development process easier, so let
 
 #+end_src
 
+** Languange specific configuration
+
+Each languange needs to be configured accordingly, expect LSP configuration on this section.
+
+*** YAML
+
+=YAML= is a human-readable data-serialization language. It is commonly used for configuration files and in applications where data is being stored or transmitted. YAML targets many of the same communications applications as Extensible Markup Language but has a minimal syntax which intentionally differs from SGML 
+
+By default, emacs doesn't have syntax highlighting for the yaml file. So we need to install =yaml-mode= package which is hosted via melpa.
+
+#+begin_src emacs-lisp
+
+      (use-package yaml-mode
+        :config
+        (setq auto-mode-list '("\\.yml\\" . yaml-mode)))
+
+#+end_src
+
+*** Markdown
+
+Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).
+
+It is widely used to write README document on Github, Gitlab and other Git service provider.
+
+By default emacs doesn't have syntax highlighting for markdown file, so we need to add =markdown-mode= package inside our emacs.
+
+#+begin_src emacs-lisp
+
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown"))
+
+#+end_src
+
 * Org Mode
 
 Org mode is a major mode that you can activate inside a buffer, this is a killer feature of emacs, you can do literate programming using org mode and more stuff.
 
-** Font Setup
+** Font setup
 
 Since I probably use emacs inside its GUI client, then we can set multiple face attribute that will be rendered on the screen, this is very convenient. 
 
@@ -279,7 +320,7 @@ Since I probably use emacs inside its GUI client, then we can set multiple face 
 
 #+end_src
 
-** Setup Hooks
+** Setup hooks
 
 This function is being used to setup default behaviour when we launch =org-mode=.
 
@@ -309,12 +350,12 @@ The =use-package= here is being used for setting up =org-mode= variables and hoo
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t
-          org-export-backends '(ascii html icalendar latext md odt))
+          org-export-backends '(ascii html icalendar latex md odt gfm pdf))
     (fain/org-font-setup))
 
 #+end_src
 
-** Bullets
+** Change =org-mode= Bullets
 
 Since the default stars can be annoying let's subtitute that using =org-bullets=
 
@@ -328,7 +369,7 @@ Since the default stars can be annoying let's subtitute that using =org-bullets=
 
 #+end_src
 
-** Column Mode
+** Display text on the middle
 
 Make =org-mode= being displayed like a true document, it has maximum width, and doesn't take up the entire screen.
 
@@ -341,6 +382,52 @@ Make =org-mode= being displayed like a true document, it has maximum width, and 
 
   (use-package visual-fill-column
     :hook (org-mode . fain/org-mode-visual-fill))
+
+#+end_src
+
+** Code block template
+
+Org Mode’s structure templates feature enables you to quickly insert code blocks into your Org files in combination with org-tempo by typing ~<~ followed by the template name like ~el~ or ~py~ and then press ~TAB~. For example, to insert an empty emacs-lisp block below, you can type ~<el~ and press ~TAB~ to expand into such a block.
+
+You can add more ~src~ block templates below by copying one of the lines and changing the two strings at the end, the first to be the template name and the second to contain the name of the language as it is known by [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][Org Babel]].
+
+#+begin_src emacs-lisp
+
+  (with-eval-after-load 'org
+    (require 'org-tempo)
+
+    (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("py" . "src python")))
+
+#+end_src
+
+** Babel for literate programming
+
+Org Babel is about letting many different languages work together. Programming languages live in blocks inside natural language Org documents. A piece of data might pass from an Org table to a Python code block, then maybe move on to an R code block, and finally end up embedded as a value in the middle of a paragraph or possibly pass through a Gnuplot code block and end up as a plot embedded in the document.
+
+#+begin_src emacs-lisp
+
+    (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (python . t)))
+
+    (push '("conf-unix" . conf-unix) org-src-lang-modes)
+
+#+end_src
+
+** Exports
+
+There are bunch of packages that we can use to export org file into various formats, it is really handy not gonna lie.
+
+*** Github Flavoured Markdown
+
+This package is being used to export Github Flavoured Markdown, since the default markdown export sucks.
+
+#+begin_src emacs-lisp
+
+  (use-package ox-gfm)
 
 #+end_src
 

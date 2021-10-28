@@ -33,7 +33,7 @@
                 term-mode-hook
                 shell-mode-hook
                 eshell-mode-hook
-                neotree-mode-hook))
+		   compilation-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 (use-package all-the-icons)
@@ -103,7 +103,8 @@
   :init
 
   (when (file-directory-p "~/Works")
-    (setq projectile-project-search-path '("~/Works")))
+    (setq projectile-project-search-path '("~/Works"
+                                           "~/Repositories")))
   (setq projectile-switch-project-action #'projectile-dired))
 
 (use-package counsel-projectile
@@ -112,6 +113,18 @@
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package yaml-mode
+  :config
+  (setq auto-mode-list '("\\.yml\\" . yaml-mode)))
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 (defun fain/org-font-setup ()
     ;; Replace list hyphen with dot
@@ -156,7 +169,7 @@
         org-fontify-whole-heading-line t
         org-fontify-done-headline t
         org-fontify-quote-and-verse-blocks t
-        org-export-backends '(ascii html icalendar latext md odt))
+        org-export-backends '(ascii html icalendar latex md odt gfm pdf))
   (fain/org-font-setup))
 
 (use-package org-bullets
@@ -172,6 +185,22 @@
 
 (use-package visual-fill-column
   :hook (org-mode . fain/org-mode-visual-fill))
+
+(with-eval-after-load 'org
+  (require 'org-tempo)
+
+  (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python")))
+
+(org-babel-do-load-languages
+  'org-babel-load-languages
+  '((emacs-lisp . t)
+    (python . t)))
+
+(push '("conf-unix" . conf-unix) org-src-lang-modes)
+
+(use-package ox-gfm)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
