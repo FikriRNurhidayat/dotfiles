@@ -102,19 +102,13 @@ Install =doom-themes= we can easily install a lot of themes.
   (use-package doom-themes
     :ensure t
     :config
-    ;; Global settings (defaults)
-    (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-          doom-themes-enable-italic t) ; if nil, italics is universally disabled
+    (setq doom-themes-enable-bold t 
+          doom-themes-enable-italic t)
     (load-theme 'doom-dracula t)
-
-    ;; Enable flashing mode-line on errors
     (doom-themes-visual-bell-config)
-    ;; Enable custom neotree theme (all-the-icons must be installed!)
     (doom-themes-neotree-config)
-    ;; or for treemacs users
-    (setq doom-themes-treemacs-theme "doom-dracula") ; use "doom-colors" for less minimal icon theme
+    (setq doom-themes-treemacs-theme "doom-colors")
     (doom-themes-treemacs-config)
-    ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
 #+end_src
 
@@ -284,16 +278,28 @@ Since I probably use emacs inside its GUI client, then we can set multiple face 
                     (org-level-7 . 1.0)
                     (org-level-8 . 1.0)))
 
-      (set-face-attribute (car face) nil :font "JetBrainsMono Nerd font:antialias=subpixel" :weight 'bold :height (cdr face)))
+      (set-face-attribute
+       (car face) nil
+       :font "JetBrainsMono Nerd font:antialias=subpixel"
+       :weight 'bold
+       :height (cdr face)))
 
     ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-    (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-    (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
-    (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-    (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-    (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-    (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
+    (set-face-attribute 'org-block nil
+                        :foreground nil
+                        :inherit 'fixed-pitch)
+    (set-face-attribute 'org-code nil
+                        :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-table nil
+                        :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-verbatim nil
+                        :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-special-keyword nil
+                        :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-meta-line nil
+                        :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-checkbox nil
+                        :inherit 'fixed-pitch))
 #+end_src
 
 ** Setup hooks
@@ -315,7 +321,7 @@ The =use-package= here is being used for setting up =org-mode= variables and hoo
   (use-package org
     :hook (org-mode . fain/org-mode-setup)
     :config
-    (setq org-ellipsis "▾"
+    (setq org-ellipsis " ⤵"
           org-hide-emphasis-markers t
           org-hide-leading-stars t
           org-startup-indented t
@@ -365,6 +371,8 @@ You can add more ~src~ block templates below by copying one of the lines and cha
 
     (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("js" . "src js"))
+    (add-to-list 'org-structure-template-alist '("rb" . "src ruby"))
     (add-to-list 'org-structure-template-alist '("py" . "src python")))
 #+end_src
 
