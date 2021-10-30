@@ -1,5 +1,5 @@
 #+TITLE: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :tangle ~/.emacs.d/init.el
 #+STARTUP: contents
 
 Welcome to my emacs configuration. Take a look whatever you need.
@@ -9,7 +9,6 @@ Welcome to my emacs configuration. Take a look whatever you need.
 =use-package= will allow you to install package easily on various different source.
 
 #+begin_src emacs-lisp
-
   (require 'package)
 
   (setq package-archives '(("melpa-stable" . "https://stable.melpa.org/packages/")
@@ -26,7 +25,6 @@ Welcome to my emacs configuration. Take a look whatever you need.
 
   (require 'use-package)
   (setq use-package-always-ensure t)
-
 #+end_src
 
 * UI Configuration
@@ -43,14 +41,12 @@ Remove default decoration on emacs such as scroll bar, toolbar, etc.
 - =set-fringe-mode= I have no idea what is this.
 
 #+begin_src emacs-lisp
-
   (setq inhibit-startup-message t)
   (scroll-bar-mode -1)            
   (tool-bar-mode -1)              
   (tooltip-mode -1)               
   (set-fringe-mode 10)            
   (menu-bar-mode -1)
-
 #+end_src
 
 ** Global font configuration
@@ -61,9 +57,9 @@ There's three kind of face attribute on emacs that we can setup
 - =variable-pitch= face attribute a.k.a ~Variable Width~ font, being used on document like org-mode and manual.
 
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
-(set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
-(set-face-attribute 'variable-pitch nil :font "Noto Serif" :height 120)
+  (set-face-attribute 'default nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
+  (set-face-attribute 'fixed-pitch nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
+  (set-face-attribute 'variable-pitch nil :font "JetBrainsMono Nerd font:antialias=subpixel" :height 120)
 #+end_src
 
 ** Global UI configuration
@@ -71,21 +67,19 @@ There's three kind of face attribute on emacs that we can setup
 Add more decoration that will improve our readability, such as line number and stuff.
 
 #+begin_src emacs-lisp
-(column-number-mode)
-(global-display-line-numbers-mode t)
+  (column-number-mode)
+  (global-display-line-numbers-mode t)
 #+end_src
 
 *** Disable line number on certain mode
 
 #+begin_src emacs-lisp
-
   (dolist (mode '(org-mode-hook
                   term-mode-hook
                   shell-mode-hook
                   eshell-mode-hook
-		     compilation-mode-hook))
+                  compilation-mode-hook))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
 #+end_src
 
 *** Add better modeline using =doom-modeline=
@@ -93,14 +87,11 @@ Add more decoration that will improve our readability, such as line number and s
 =all-the-icons= is being used for the icon that will be shown up inside modeline. The =doom-modeline= is basically just a better modeline for our emacs.
 
 #+begin_src emacs-lisp
-
   (use-package all-the-icons)
-
   (use-package doom-modeline
     :ensure t
     :init (doom-modeline-mode 1)
     :custom ((doom-modeline-height 32)))
-
 #+end_src
 
 *** Theming
@@ -108,7 +99,6 @@ Add more decoration that will improve our readability, such as line number and s
 Install =doom-themes= we can easily install a lot of themes.
 
 #+begin_src emacs-lisp
-
   (use-package doom-themes
     :ensure t
     :config
@@ -126,7 +116,6 @@ Install =doom-themes= we can easily install a lot of themes.
     (doom-themes-treemacs-config)
     ;; Corrects (and improves) org-mode's native fontification.
     (doom-themes-org-config))
-
 #+end_src
 
 *** Language Specific
@@ -134,10 +123,8 @@ Install =doom-themes= we can easily install a lot of themes.
 Add language specific styling such as =emacs-lisp=
 
 #+begin_src emacs-lisp
-
   (use-package rainbow-delimiters
     :hook (prog-mode . rainbow-delimiters-mode))
-
 #+end_src
 
 ** Prompt UI
@@ -149,7 +136,6 @@ By default our prompt doesn't display available properly, in fact it is hard to 
 =ivy= is package that we use to display available option as rows of option.
 
 #+begin_src emacs-lisp
-
   (use-package ivy
     :diminish
     :bind (("C-s" . swiper)
@@ -166,7 +152,6 @@ By default our prompt doesn't display available properly, in fact it is hard to 
            ("C-d" . ivy-reverse-i-search-kill))
     :config
     (ivy-mode 1))
-
 #+end_src
 
 *** Counsel
@@ -174,7 +159,6 @@ By default our prompt doesn't display available properly, in fact it is hard to 
 =counsel= is basically just a package that can provide you information about the option that is available for you.
 
 #+begin_src emacs-lisp
-
   (use-package counsel
     :bind (("M-x" . counsel-M-x)
            ("C-x b" . counsel-ibuffer)
@@ -188,13 +172,11 @@ By default our prompt doesn't display available properly, in fact it is hard to 
 =which-key= package will help you to define what next keystoke that you might want to press.
 
 #+begin_src emacs-lisp
-
   (use-package which-key
     :init (which-key-mode)
-     :diminish which-key-mode
+    :diminish which-key-mode
     :config
     (setq which-key-idle-delay 1))
-
 #+end_src
 
 * Development
@@ -212,23 +194,21 @@ There are bunch of package that will make our development process easier, so let
 =projectile= has a variable called =projectile-project-search-path= which tells where the projectile find the project directory or files. So you'd better set this to your own directory path.
 
 #+begin_src emacs-lisp
+  (use-package projectile
+    :diminish projectile-mode
+    :config (projectile-mode)
+    :custom ((projectile-completion-system 'ivy))
+    :bind-keymap
+    ("C-c p" . projectile-command-map)
+    :init
 
-    (use-package projectile
-      :diminish projectile-mode
-      :config (projectile-mode)
-      :custom ((projectile-completion-system 'ivy))
-      :bind-keymap
-      ("C-c p" . projectile-command-map)
-      :init
+    (when (file-directory-p "~/Works")
+      (setq projectile-project-search-path '("~/Works"
+                                             "~/Repositories")))
+    (setq projectile-switch-project-action #'projectile-dired))
 
-      (when (file-directory-p "~/Works")
-        (setq projectile-project-search-path '("~/Works"
-                                               "~/Repositories")))
-      (setq projectile-switch-project-action #'projectile-dired))
-
-    (use-package counsel-projectile
-      :config (counsel-projectile-mode))
-
+  (use-package counsel-projectile
+    :config (counsel-projectile-mode))
  #+end_src
 
 ** Magit
@@ -236,11 +216,9 @@ There are bunch of package that will make our development process easier, so let
 =magit= is a git client written in =emacs-lisp= so you can easily use it inside emacs, in fact some people says that this is one of the killer feature of emacs, but I haven't found it to be true.
 
 #+begin_src emacs-lisp
-
   (use-package magit
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-
 #+end_src
 
 ** Languange specific configuration
@@ -254,11 +232,9 @@ Each languange needs to be configured accordingly, expect LSP configuration on t
 By default, emacs doesn't have syntax highlighting for the yaml file. So we need to install =yaml-mode= package which is hosted via melpa.
 
 #+begin_src emacs-lisp
-
-      (use-package yaml-mode
-        :config
-        (setq auto-mode-list '("\\.yml\\" . yaml-mode)))
-
+  (use-package yaml-mode
+    :config
+    (setq auto-mode-list '("\\.yml\\" . yaml-mode)))
 #+end_src
 
 *** Markdown
@@ -270,7 +246,6 @@ It is widely used to write README document on Github, Gitlab and other Git servi
 By default emacs doesn't have syntax highlighting for markdown file, so we need to add =markdown-mode= package inside our emacs.
 
 #+begin_src emacs-lisp
-
   (use-package markdown-mode
     :ensure t
     :commands (markdown-mode gfm-mode)
@@ -278,7 +253,6 @@ By default emacs doesn't have syntax highlighting for markdown file, so we need 
            ("\\.md\\'" . markdown-mode)
            ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
-
 #+end_src
 
 * Org Mode
@@ -290,34 +264,36 @@ Org mode is a major mode that you can activate inside a buffer, this is a killer
 Since I probably use emacs inside its GUI client, then we can set multiple face attribute that will be rendered on the screen, this is very convenient. 
 
 #+begin_src emacs-lisp
-
   (defun fain/org-font-setup ()
-      ;; Replace list hyphen with dot
-      (font-lock-add-keywords 'org-mode
-                              '(("^ *\\([-]\\) "
-                                  (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+    ;; Replace list hyphen with dot
+    (font-lock-add-keywords 'org-mode
+                            '(("^ *\\([-]\\) "
+                               (0 (prog1 ()
+                                    (compose-region (match-beginning 1) (match-end 1) "•")
+                                    ))
+                               ))
+                            )
 
-      ;; Set faces for heading levels
-      (dolist (face '((org-level-1 . 1.0)
-                      (org-level-2 . 1.0)
-                      (org-level-3 . 1.0)
-                      (org-level-4 . 1.0)
-                      (org-level-5 . 1.0)
-                      (org-level-6 . 1.0)
-                      (org-level-7 . 1.0)
-                      (org-level-8 . 1.0)))
+    ;; Set faces for heading levels
+    (dolist (face '((org-level-1 . 1.0)
+                    (org-level-2 . 1.0)
+                    (org-level-3 . 1.0)
+                    (org-level-4 . 1.0)
+                    (org-level-5 . 1.0)
+                    (org-level-6 . 1.0)
+                    (org-level-7 . 1.0)
+                    (org-level-8 . 1.0)))
 
-      (set-face-attribute (car face) nil :font "Noto Sans" :weight 'bold :height (cdr face)))
+      (set-face-attribute (car face) nil :font "JetBrainsMono Nerd font:antialias=subpixel" :weight 'bold :height (cdr face)))
 
-      ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-      (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
-      (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
-      (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
-      (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-      (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-      (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
-      (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
-
+    ;; Ensure that anything that should be fixed-pitch in Org files appears that way
+    (set-face-attribute 'org-block nil :foreground nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-code nil   :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-table nil   :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
+    (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+    (set-face-attribute 'org-checkbox nil :inherit 'fixed-pitch))
 #+end_src
 
 ** Setup hooks
@@ -325,12 +301,10 @@ Since I probably use emacs inside its GUI client, then we can set multiple face 
 This function is being used to setup default behaviour when we launch =org-mode=.
 
 #+begin_src emacs-lisp
-
   (defun fain/org-mode-setup ()
     (org-indent-mode 1)
     (variable-pitch-mode 1)
     (visual-line-mode 1))
-
 #+end_src
 
 ** Configuration
@@ -338,7 +312,6 @@ This function is being used to setup default behaviour when we launch =org-mode=
 The =use-package= here is being used for setting up =org-mode= variables and hooks.
 
 #+begin_src emacs-lisp
-
   (use-package org
     :hook (org-mode . fain/org-mode-setup)
     :config
@@ -352,7 +325,6 @@ The =use-package= here is being used for setting up =org-mode= variables and hoo
           org-fontify-quote-and-verse-blocks t
           org-export-backends '(ascii html icalendar latex md odt gfm pdf))
     (fain/org-font-setup))
-
 #+end_src
 
 ** Change =org-mode= Bullets
@@ -360,13 +332,11 @@ The =use-package= here is being used for setting up =org-mode= variables and hoo
 Since the default stars can be annoying let's subtitute that using =org-bullets=
 
 #+begin_src emacs-lisp
-
   (use-package org-bullets
     :after org
     :hook (org-mode . org-bullets-mode)
     :custom
      (org-bullets-bullet-list '("◉")))
-
 #+end_src
 
 ** Display text on the middle
@@ -374,7 +344,6 @@ Since the default stars can be annoying let's subtitute that using =org-bullets=
 Make =org-mode= being displayed like a true document, it has maximum width, and doesn't take up the entire screen.
 
 #+begin_src emacs-lisp
-
   (defun fain/org-mode-visual-fill ()
     (setq visual-fill-column-width 100
           visual-fill-column-center-text t)
@@ -382,7 +351,6 @@ Make =org-mode= being displayed like a true document, it has maximum width, and 
 
   (use-package visual-fill-column
     :hook (org-mode . fain/org-mode-visual-fill))
-
 #+end_src
 
 ** Code block template
@@ -392,14 +360,12 @@ Org Mode’s structure templates feature enables you to quickly insert code bloc
 You can add more ~src~ block templates below by copying one of the lines and changing the two strings at the end, the first to be the template name and the second to contain the name of the language as it is known by [[https://orgmode.org/worg/org-contrib/babel/languages/index.html][Org Babel]].
 
 #+begin_src emacs-lisp
-
   (with-eval-after-load 'org
     (require 'org-tempo)
 
     (add-to-list 'org-structure-template-alist '("sh" . "src shell"))
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
     (add-to-list 'org-structure-template-alist '("py" . "src python")))
-
 #+end_src
 
 ** Babel for literate programming
@@ -407,14 +373,13 @@ You can add more ~src~ block templates below by copying one of the lines and cha
 Org Babel is about letting many different languages work together. Programming languages live in blocks inside natural language Org documents. A piece of data might pass from an Org table to a Python code block, then maybe move on to an R code block, and finally end up embedded as a value in the middle of a paragraph or possibly pass through a Gnuplot code block and end up as a plot embedded in the document.
 
 #+begin_src emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (python . t)
+     (shell . t)))
 
-    (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-        (python . t)))
-
-    (push '("conf-unix" . conf-unix) org-src-lang-modes)
-
+  (push '("conf-unix" . conf-unix) org-src-lang-modes)
 #+end_src
 
 ** Exports
@@ -426,9 +391,7 @@ There are bunch of packages that we can use to export org file into various form
 This package is being used to export Github Flavoured Markdown, since the default markdown export sucks.
 
 #+begin_src emacs-lisp
-
   (use-package ox-gfm)
-
 #+end_src
 
 * Keybindings
@@ -440,9 +403,7 @@ I find it emacs default keybindings sucks. So I installed some package to cater 
  =ESC= is being used as one of our keystroke on keybindings, sometime it is registered as keystroke chain, hence we need to make it to quit the prompts.
 
  #+begin_src emacs-lisp
-
    (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
  #+end_src
 
 ** Evil Mode
@@ -450,7 +411,6 @@ I find it emacs default keybindings sucks. So I installed some package to cater 
 I love vim, and probably you also do. Emacs has a package called =evil= which will make vim available on emacs. Also, not every package that we install has =evil= keybinding, hence you need to install additional package called =evil-collection=.
 
 #+begin_src emacs-lisp
-
   (use-package evil
     :init
     (setq evil-want-integration t)
@@ -474,5 +434,4 @@ I love vim, and probably you also do. Emacs has a package called =evil= which wi
     :ensure t
     :pin melpa-stable
     :config (evil-collection-init))
-
 #+end_src
