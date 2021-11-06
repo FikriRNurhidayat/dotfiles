@@ -1,5 +1,5 @@
 #+TITLE: Emacs Configuration
-#+PROPERTY: header-args:emacs-lisp :tangle ./init.el :tangle ~/.emacs.d/init.el
+#+PROPERTY: header-args:emacs-lisp :tangle ./init.el
 #+STARTUP: contents
 
 Welcome to my emacs configuration. Take a look whatever you need.
@@ -69,6 +69,7 @@ Add more decoration that will improve our readability, such as line number and s
 #+begin_src emacs-lisp
   (column-number-mode)
   (global-display-line-numbers-mode t)
+  (setq-default tab-width 2)
 #+end_src
 
 *** Disable line number on certain mode
@@ -104,7 +105,7 @@ Install =doom-themes= we can easily install a lot of themes.
     :config
     (setq doom-themes-enable-bold t 
           doom-themes-enable-italic t)
-    (load-theme 'doom-dracula t)
+    (load-theme 'doom-nord t)
     (doom-themes-visual-bell-config)
     (doom-themes-neotree-config)
     (setq doom-themes-treemacs-theme "doom-colors")
@@ -308,7 +309,6 @@ This function is being used to setup default behaviour when we launch =org-mode=
 
 #+begin_src emacs-lisp
   (defun fain/org-mode-setup ()
-    (org-indent-mode 1)
     (variable-pitch-mode 1)
     (visual-line-mode 1))
 #+end_src
@@ -322,18 +322,26 @@ The =use-package= here is being used for setting up =org-mode= variables and hoo
     :hook (org-mode . fain/org-mode-setup)
     :config
     (setq org-ellipsis " ⤵"
+          org-agenda-start-with-log-mode t
+          org-log-done 'time
+          org-log-into-drawer t
+          org-src-fontify-natively t
           org-hide-emphasis-markers t
           org-hide-leading-stars t
           org-startup-indented t
+          org-src-fontify-natively t
+          org-babel-min-lines-for-block-output 0 ;; Wrap result with #+BEGIN_EXAMPLE
           org-pretty-entities t
           org-fontify-whole-heading-line t
           org-fontify-done-headline t
           org-fontify-quote-and-verse-blocks t
+          org-agenda-files '("~/Documents/org/TASKS.org"
+                             "~/Documents/org/AGENDA.org")
           org-export-backends '(ascii html icalendar latex md odt gfm pdf))
     (fain/org-font-setup))
 #+end_src
 
-** Change =org-mode= Bullets
+** Change =org-mode= bullets
 
 Since the default stars can be annoying let's subtitute that using =org-bullets=
 
@@ -342,7 +350,7 @@ Since the default stars can be annoying let's subtitute that using =org-bullets=
     :after org
     :hook (org-mode . org-bullets-mode)
     :custom
-     (org-bullets-bullet-list '("◉")))
+     (org-bullets-bullet-list '("∴")))
 #+end_src
 
 ** Display text on the middle
@@ -390,6 +398,14 @@ Org Babel is about letting many different languages work together. Programming l
   (push '("conf-unix" . conf-unix) org-src-lang-modes)
 #+end_src
 
+By default, ~org-babel~ does not aware of ~PATH~, hence we need this package to solve that problem.
+
+#+begin_src emacs-lisp
+	(use-package exec-path-from-shell)
+	(when (memq window-system '(mac ns x))
+		(exec-path-from-shell-initialize))
+#+end_src
+
 ** Exports
 
 There are bunch of packages that we can use to export org file into various formats, it is really handy not gonna lie.
@@ -400,6 +416,27 @@ This package is being used to export Github Flavoured Markdown, since the defaul
 
 #+begin_src emacs-lisp
   (use-package ox-gfm)
+#+end_src
+
+*** LaTeX
+
+Set ~pdflatex~ command to use specific arguments.
+
+#+begin_src emacs-lisp
+  (setq org-latex-listings 'minted
+        org-latex-packages-alist '(("newfloat" "minted"))
+        org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+end_src
+
+Modify source block, break the line, etc.
+
+#+begin_src emacs-lisp
+  (setq org-latex-minted-options '(("breaklines" "true")
+                                   ("breakanywhere" "true")
+                                   ("tabsize" "2")))
 #+end_src
 
 * Keybindings
@@ -443,3 +480,4 @@ I love vim, and probably you also do. Emacs has a package called =evil= which wi
     :pin melpa-stable
     :config (evil-collection-init))
 #+end_src
+
