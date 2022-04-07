@@ -19,6 +19,8 @@ set nocursorline
 set noswapfile
 
 " Hide things
+set shortmess+=at
+set shortmess+=I
 set shortmess+=F
 set noshowcmd
 set noruler
@@ -37,7 +39,7 @@ highlight VertSplit cterm=NONE gui=NONE
 highlight NonText ctermfg=black guibg=black
 highlight CursorLine cterm=NONE gui=NONE
 highlight Pmenu cterm=NONE gui=NONE
-highlight NormalFloat ctermbg=black gui=NONE
+highlight NormalFloat ctermbg=NONE gui=NONE
 
 " Remove tilde
 set fcs=eob:\ 
