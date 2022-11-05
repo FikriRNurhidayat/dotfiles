@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# inspired by: https://gist.github.com/sebastiencs/5d7227f388d93374cebdf72e783fbd6a 
+# you can call this script like this:
+# $this up
+# $this down
+
+function get_backlight {
+  xbacklight -get | awk -F '.' '{print $1}'
+}
+
+function send_notification {
+    backlight=`get_backlight`
+    # make the bar with the special character ─ (it's not dash -)
+    # https://en.wikipedia.org/wiki/Box-drawing_character
+    bar=$(seq -s "─" $(($backlight / 5)) | sed 's/[0-9]//g')
+    # send the notification
+    dunstify -i brightnesssettings -t 1000 -r 2593 "    $bar"
+}
+
+case $1 in
+    up)
+  # increase brightness by 5%
+  xbacklight -inc 5
+	send_notification
+	;;
+    down)
+  # decrease brightness by 5%
+  xbacklight -dec 5
+	send_notification
+	;;
+esac
+

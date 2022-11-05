@@ -145,11 +145,11 @@ XF86AudioMute
 
 # decrease backlight
 XF86MonBrightnessDown
-	xbacklight -dec 5
+  $HOME/.scripts/backlight down
 
 # increase backlight
 XF86MonBrightnessUp
-	xbacklight -inc 5
+  $HOME/.scripts/backlight up
 
 # increase backlight
 super + F4
