@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+## == Original Author ===========
+## Name    : Aditya Shakya
+## Mail    : adi1090x@gmail.com
+## Github  : @adi1090x
+## Twitter : @adi1090x
+## == Editor ===================
+## Name    : Fikri Rahmat Nurhidayat
+## Mail    : fikrirnurhidayat@gmail.com
+## Github  : @fikrirnurhidayat
+## Twitter : @fikrirnurhidayat
+
+dir="$HOME/.config/rofi/screenshot/"
+rofi_command="rofi -theme $dir/style.rasi"
+
+# Options
+screen=""
+area=""
+window=""
+
+# Variable passed to rofi
+options="$screen\n$area\n$window"
+
+chosen="$(echo -e "$options" | $rofi_command -p 'scrot' -dmenu -selected-row 1)"
+if [[ -f /usr/bin/maim ]]; then
+  screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
+  mkdir -p $screenshotdir
+  f="$screenshotdir/$(date '+%F-%H-%M-%S').png"
+
+  case $chosen in
+      $screen)
+      sleep 1
+      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+          ;;
+      $area)
+      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+          ;;
+      $window)
+      maim -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+          ;;
+  esac
+fi

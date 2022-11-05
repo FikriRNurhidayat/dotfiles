@@ -159,10 +159,6 @@ super + F4
 # screenshots
 #
 
-# entire screen
-super + Print
-  maim | xclip -sel clipboard -t image/png
-
 # select on screen
 Print
-  maim -u --select | xclip -sel clipboard -t image/png
+  $HOME/.config/rofi/bin/screenshot
