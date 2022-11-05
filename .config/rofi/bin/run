@@ -1,0 +1,17 @@
+#!/bin/sh
+
+## Original Author
+# Author  : Aditya Shakya
+# Mail    : adi1090x@gmail.com
+# Github  : @adi1090x
+# Twitter : @adi1090x
+
+## Editor
+# Author  : Fikri Rahmat Nurhidayat
+# Mail    : fikrirnurhidayat@gmail.com
+# Github  : @fikrirnurhidayat
+# Twitter : @fikrirnurhidayat
+
+rofi -no-lazy-grab -show run \
+  -modi run \
+  -theme "$HOME/.config/rofi/launcher/style.rasi"

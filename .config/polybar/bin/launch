@@ -7,5 +7,5 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch the preview bar
-polybar -q main -c "$HOME"/Repositories/dotfiles/.config/polybar/config.ini 2>/tmp/polybar.error.log &
-polybar -q bottom -c "$HOME"/Repositories/dotfiles/.config/polybar/config.ini 2>/tmp/polybar.error.log &
+polybar -q main -c "$HOME"/.config/polybar/config.ini 2>/tmp/polybar.error.log &
+polybar -q bottom -c "$HOME"/.config/polybar/config.ini 2>/tmp/polybar.error.log &
