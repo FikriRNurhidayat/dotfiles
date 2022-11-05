@@ -1,0 +1,4 @@
+@import "style.rasi" configuration {
+  font: "Iosevka Term 12";
+  disable-history: true;
+}

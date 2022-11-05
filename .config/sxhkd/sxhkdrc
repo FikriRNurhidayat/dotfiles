@@ -129,15 +129,15 @@ super + {Left,Down,Up,Right}
 
 # decrease volume
 XF86AudioLowerVolume
-	pamixer -d 5
+  $HOME/.scripts/volume down
 
 # increase volume
 XF86AudioRaiseVolume
-	pamixer -i 5
+  $HOME/.scripts/volume up
 
 # mute audio
 XF86AudioMute
-  if [ $(pamixer --get-mute) = true ]; then pamixer -u; else pamixer -m; fi
+  $HOME/.scripts/volume mute
 
 #
 # brightness control
@@ -150,6 +150,10 @@ XF86MonBrightnessDown
 # increase backlight
 XF86MonBrightnessUp
 	xbacklight -inc 5
+
+# increase backlight
+super + F4
+  $HOME/.config/rofi/bin/powermenu
 
 #
 # screenshots

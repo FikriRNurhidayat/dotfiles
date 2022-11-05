@@ -14,4 +14,4 @@
 
 rofi -no-lazy-grab -show run \
   -modi run \
-  -theme "$HOME/.config/rofi/launcher/style.rasi"
+  -theme "$HOME/.config/rofi/launcher/run.rasi"
