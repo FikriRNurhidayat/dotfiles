@@ -11,7 +11,7 @@ super + @space
   $HOME/.config/rofi/bin/launcher
 
 # shell launcher
-super + r
+super + shift + @space
   $HOME/.config/rofi/bin/run
 
 # make sxhkd reload its configuration files:
