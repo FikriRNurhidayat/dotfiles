@@ -1,5 +1,0 @@
-tint2 -c ~/.config/tint2/test/test.tint2rc &
-tint2 -c ~/.config/tint2/blocks/blocks.tint2rc &
-sleep 1; manjaro-compositor --start &
-sleep 1; volumeicon &
-nitrogen --restore

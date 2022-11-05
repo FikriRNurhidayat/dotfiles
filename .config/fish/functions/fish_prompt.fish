@@ -1,1 +1,0 @@
-/home/fain/.local/share/omf/themes/mish/fish_prompt.fish

@@ -15,4 +15,4 @@ Copying `.vimrc` is unnecessary.
 
 #### Neovim
 
-<img width="1433" alt="Screen Shot 2021-07-04 at 09 33 30" src="https://user-images.githubusercontent.com/43759187/124371395-9ad37600-dcab-11eb-931b-d25ddf11d149.png">
+![Screenshots](https://user-images.githubusercontent.com/43759187/124371395-9ad37600-dcab-11eb-931b-d25ddf11d149.png)

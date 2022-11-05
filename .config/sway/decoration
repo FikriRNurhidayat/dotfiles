@@ -1,7 +1,0 @@
-output * bg ~/Pictures/Wallpaper/Tebing.jpg fill
-font pango: 'JetBrains Mono' Bold 12
-
-gaps inner 20
-gaps outer 10
-
-default_border none

@@ -46,3 +46,6 @@ set fcs=eob:\
 
 " Remove vertical border
 set fillchars+=vert:\ 
+
+" Disable number on markdown
+autocmd filetype markdown setlocal nonumber norelativenumber

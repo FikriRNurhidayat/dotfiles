@@ -1,6 +1,5 @@
 require('nvim-tree').setup({
   update_cwd = true,
-  lsp_diagnostics = true,
   git = {
     enable = false,
     ignore = true,
@@ -14,15 +13,13 @@ require('nvim-tree').setup({
   },
   view = {
     width = 36,
-    height = 64,
     side = 'left',
-    auto_resize = true
   }
 })
 
 vim.g.nvim_tree_show_icons = {
   git = 0,
-  folders = 0,
-  files = 0,
+  folders = 1,
+  files = 1,
   folder_arrows = 0,
 }

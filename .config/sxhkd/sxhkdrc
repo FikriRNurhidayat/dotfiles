@@ -6,17 +6,9 @@
 super + Return
 	kitty
 
-# randomly change wallpaper
-super + w
-  randomwal
-
 # program launcher
 super + @space
   $HOME/.config/rofi/bin/launcher_text
-
-# shell launcher
-super + shift + Return
-  $HOME/.config/rofi/bin/launcher_text_run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -141,7 +133,7 @@ XF86AudioRaiseVolume
 
 # mute audio
 XF86AudioMute
-  pamixer --get-mute && pamixer -u || pamixer -m
+  if [ $(pamixer --get-mute) = true ]; then pamixer -u; else pamixer -m; fi
 
 #
 # brightness control
