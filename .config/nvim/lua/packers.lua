@@ -105,6 +105,11 @@ return require('packer').startup(function()
     commit = "78f5f001709b5b321a35dcdc44549ef93185e024",
   })
 
+  use ({
+    'elkowar/yuck.vim',
+    commit = "9b5e0370f70cc30383e1dabd6c215475915fe5c3",
+  })
+
   -- Rest Nvim
   use {
   "NTBBloodbath/rest.nvim",
