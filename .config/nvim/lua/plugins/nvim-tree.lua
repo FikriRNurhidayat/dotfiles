@@ -1,5 +1,15 @@
 require('nvim-tree').setup({
   update_cwd = true,
+  renderer = {
+    icons = {
+      show = {
+        file = false,
+        folder = false,
+        folder_arrow = true,
+        git = false,
+      },
+    },
+  },
   git = {
     enable = false,
     ignore = true,
@@ -16,10 +26,3 @@ require('nvim-tree').setup({
     side = 'left',
   }
 })
-
-vim.g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 1,
-  files = 1,
-  folder_arrows = 0,
-}
