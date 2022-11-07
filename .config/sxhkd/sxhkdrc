@@ -15,7 +15,7 @@ super + shift + @space
   $HOME/.config/rofi/bin/run
 
 # make sxhkd reload its configuration files:
-super + Escape
+super + shift + escape
 	pkill -USR1 -x sxhkd
 
 #
@@ -151,8 +151,8 @@ XF86MonBrightnessDown
 XF86MonBrightnessUp
   $HOME/.scripts/backlight up
 
-# increase backlight
-super + F4
+# powermenu
+super + Escape
   $HOME/.config/rofi/bin/powermenu
 
 #
