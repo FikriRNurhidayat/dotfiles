@@ -31,13 +31,13 @@ if [[ -f /usr/bin/maim ]]; then
   case $chosen in
       $screen)
       sleep 1
-      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+      maim -u "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
           ;;
       $area)
       maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
           ;;
       $window)
-      maim -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+      maim -u -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
           ;;
   esac
 fi
