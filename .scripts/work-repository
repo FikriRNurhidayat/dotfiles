@@ -1,0 +1,5 @@
+#!/bin/sh
+
+REPO=$(ls $HOME/Works/Repositories | fzf)
+
+cd "$HOME/Works/Repositories/${REPO}"

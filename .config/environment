@@ -12,12 +12,13 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # The next lines set new variables for Golang
 # also it updates PATH for golang binaries
 export GOARCH="amd64"
-export GOPATH="$HOME/.go"
+export GOPATH="$HOME/Repositories/GO"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Adds custom scripts and binaries
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/scripts"
+export PATH="$PATH:$HOME/.scripts"
 
 # Configuration stuff
 export DOTFILES="$HOME/.dotfiles"
