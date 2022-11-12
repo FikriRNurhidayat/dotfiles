@@ -16,7 +16,11 @@ super + shift + @space
 
 # make sxhkd reload its configuration files:
 super + shift + escape
-	pkill -USR1 -x sxhkd
+  pkill -USR1 -x sxhkd
+
+# emacs
+super + e
+  emacsclient --create-frame
 
 #
 # bspwm hotkeys

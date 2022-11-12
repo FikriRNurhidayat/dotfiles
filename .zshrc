@@ -76,6 +76,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# Sourc profile
+source $HOME/.profile
+
 # Shared environment variable between shell
 source $HOME/.config/environment
 
