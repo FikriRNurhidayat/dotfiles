@@ -25,6 +25,23 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 .scripts/dotfiles-sync
 #+end_src
 
+* Principles
+
+This configuration and all associated modules intend to follow the below principles. I use *nord* by the way.
+
+*NOTE:* Some of these may change over time as we learn from this process.
+
+** Simple
+
+Every software that I use as a solution *MUST* be simple, and easy to configure. The implication of this is whenever I get back to this configuration, I should be able to modify it without extensive reading to relearn how it was configured.
+
+** Efficient
+
+Choice of software to be used to cater the daily drive needs *MUST* be an efficient software. It *SHOULD* comply to unix philoshopy, where I can build software on top of it, such as the extensibility of =dmenu= and =rofi=.
+
+** Aesthetically Pleasing
+
+The look of my desktop and what ever it is that I configure *MUST* be aethectically pleasing to my eyes, so I don't care about bloat since I use modern computer anyway. The aesthetic point *MUST* not contradict the simple principle and efficiency.
 * Screenshots
 
 *emacs*
@@ -68,21 +85,3 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 #+name: rofi
 #+attr_html: :width 100%
 [[./screenshots/rofi.png]]
-
-* Principles
-
-This configuration and all associated modules intend to follow the below principles. I use *nord* by the way.
-
-*NOTE:* Some of these may change over time as we learn from this process.
-
-** Simple
-
-Every software that I use as a solution *MUST* be simple, and easy to configure. The implication of this is whenever I get back to this configuration, I should be able to modify it without extensive reading to relearn how it was configured.
-
-** Efficient
-
-Choice of software to be used to cater the daily drive needs *MUST* be an efficient software. It *SHOULD* comply to unix philoshopy, where I can build software on top of it, such as the extensibility of =dmenu= and =rofi=.
-
-** Aesthetically Pleasing
-
-The look of my desktop and what ever it is that I configure *MUST* be aethectically pleasing to my eyes, so I don't care about bloat since I use modern computer anyway. The aesthetic point *MUST* not contradict the simple principle and efficiency.
