@@ -15,14 +15,14 @@ git clone https://github.com/fikrirnurhidayat/dotfiles ~/.dotfiles
 # Go to ~/.dotfiles
 cd ~/.dotfiles
 
+# Sync dotfiles
+.scripts/dotfiles-sync
+
 # Install the dependencies
 sudo pacman -S - < .local/share/packages.txt
 
 # Install ohmyzsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Sync dotfiles
-.scripts/dotfiles-sync
 #+end_src
 
 * Principles
@@ -42,6 +42,7 @@ Choice of software to be used to cater the daily drive needs *MUST* be an effici
 ** Aesthetically Pleasing
 
 The look of my desktop and what ever it is that I configure *MUST* be aethectically pleasing to my eyes, so I don't care about bloat since I use modern computer anyway. The aesthetic point *MUST* not contradict the simple principle and efficiency.
+
 * Screenshots
 
 *emacs*
