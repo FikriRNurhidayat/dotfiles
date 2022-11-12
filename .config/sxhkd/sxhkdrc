@@ -29,6 +29,10 @@ super + e
 super + alt + {q,r}
 	bspc {quit,wm -r}
 
+# dunst
+super + n + r
+  pkill -USR1 -x dunst && dunst &
+
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}

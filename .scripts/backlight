@@ -11,11 +11,7 @@ function get_backlight {
 
 function send_notification {
     backlight=`get_backlight`
-    # make the bar with the special character ─ (it's not dash -)
-    # https://en.wikipedia.org/wiki/Box-drawing_character
-    bar=$(seq -s "─" $(($backlight / 5)) | sed 's/[0-9]//g')
-    # send the notification
-    dunstify -i brightnesssettings -t 1000 -r 2593 "    $bar"
+    dunstify -i brightnesssettings -t 1000 -r 2593 -h int:value:$backlight "Brightness"
 }
 
 case $1 in
