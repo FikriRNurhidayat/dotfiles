@@ -13,6 +13,7 @@ zsh
 kitty
 polybar
 bspwm
+sxhkd
 sxiv
 maim
 rofi
