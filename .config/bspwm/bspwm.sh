@@ -32,9 +32,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Set keyboard rate
-xset r rate 300 50
-
 export AWT_TOOLKIT=MToolkit
 wmname compiz
 
@@ -49,8 +46,10 @@ export SSH_AUTH_SOCK
 mkdir -p "$HOME"/.local/share/keyrings
 
 # Set keyboard rate
-xset r rate 300 50
+xset r rate 300 75
+
+dunst &
 
 picom -f &
-dunst &
+
 exec bspwm

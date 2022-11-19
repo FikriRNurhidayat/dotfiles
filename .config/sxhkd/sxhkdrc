@@ -19,12 +19,16 @@ super + w
   $HOME/.config/rofi/bin/window
 
 # make sxhkd reload its configuration files:
-super + shift + escape
+super + shift + Escape
   pkill -USR1 -x sxhkd
 
 # emacs
 super + e
   emacsclient --create-frame
+
+# lock
+super + l
+  slock
 
 #
 # bspwm hotkeys
@@ -174,3 +178,8 @@ super + Escape
 # select on screen
 Print
   $HOME/.config/rofi/bin/screenshot
+
+
+# write whatever in clipboard
+super + shift + v
+  xdotool type --window getwindowfocus "$(xclip -o -sel clipbboard)"
