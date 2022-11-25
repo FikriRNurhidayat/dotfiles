@@ -26,6 +26,10 @@ super + shift + Escape
 super + e
   emacsclient --create-frame
 
+# brave
+super + b
+  brave
+
 # lock
 super + l
   slock
