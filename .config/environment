@@ -18,6 +18,10 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # Doom emacs
 export PATH="$PATH:$HOME/.emacs.d/bin"
 
+# Deno
+export DENO_INSTALL="/home/fain/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # Adds custom scripts and binaries
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/scripts"
