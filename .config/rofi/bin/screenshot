@@ -24,20 +24,21 @@ options="$screen\n$area\n$window"
 
 chosen="$(echo -e "$options" | $rofi_command -p 'scrot' -dmenu -selected-row 1)"
 if [[ -f /usr/bin/maim ]]; then
+  filename=$(date '+%F-%H-%M-%S').png
   screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
   mkdir -p $screenshotdir
-  f="$screenshotdir/$(date '+%F-%H-%M-%S').png"
+  f="$screenshotdir/$filename"
 
   case $chosen in
       $screen)
       sleep 1
-      maim -u "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+      maim -u "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
           ;;
       $area)
-      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
           ;;
       $window)
-      maim -u -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; sxiv "$f"
+      maim -u -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
           ;;
   esac
 fi
