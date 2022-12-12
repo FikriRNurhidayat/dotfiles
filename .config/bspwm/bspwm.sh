@@ -48,8 +48,13 @@ mkdir -p "$HOME"/.local/share/keyrings
 # Set keyboard rate
 xset r rate 300 75
 
+# fireup notification daemon
 dunst &
 
+# Hide your mouse cursor when it has no input
+unclutter &
+
+# Cause screen tearing I guess
 picom -f &
 
 exec bspwm

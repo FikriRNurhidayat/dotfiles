@@ -84,3 +84,6 @@ source $HOME/.config/environment
 
 # Shared aliases between shell
 source $HOME/.config/sh/aliases
+
+# Shared function between shell
+source $HOME/.config/sh/func

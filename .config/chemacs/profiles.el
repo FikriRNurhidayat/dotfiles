@@ -1,0 +1,6 @@
+(("default" . ((user-emacs-directory . "~/.local/emacsdir/doomemacs")
+               (env . (("DOOMDIR" . "~/.config/doom")))))
+  ("doomtmp" . ((user-emacs-directory . "~/.local/emacsdir/doomemacs")
+                (env . (("DOOMDIR" . "~/tmp/.doom.d")))))
+  ("fain" . ((user-emacs-directory . "~/.local/emacsdir/fainemacs")
+             (server-name . "fain"))))

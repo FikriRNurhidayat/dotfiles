@@ -12,7 +12,9 @@ alias conf-picom="nvim $DOTFILES/.config/picom.conf"
 alias conf-aliases="nvim $DOTFILES/.config/sh/aliases"
 alias conf-environment="nvim $DOTFILES/.config/environment"
 alias conf-gtkrc-2.0="nvim $DOTFILES/.gtkrc-2.0"
-alias conf-vimrc="nvim $DOTFILES/.vimrc"
+
+# Configure desktop shortcuts
+alias conf-desktop="nvim $HOME/.local/share/applications"
 
 # Directory configuration
 alias conf-bspwm="cd $DOTFILES/.config/bspwm && nvim bspwmrc"

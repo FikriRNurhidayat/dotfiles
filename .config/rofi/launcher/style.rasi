@@ -14,7 +14,7 @@
  */
 
 configuration {
-  font: "Noto Sans 12";
+  font: "Iosevka 12";
   fixed-num-lines: true;
   show-icons: false;
   sidebar-mode: true;

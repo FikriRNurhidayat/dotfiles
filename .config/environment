@@ -16,7 +16,7 @@ export GOPATH="$HOME/Repositories/GO"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Doom emacs
-export PATH="$PATH:$HOME/.emacs.d/bin"
+export PATH="$PATH:$HOME/.local/emacsdir/doomemacs/bin"
 
 # Deno
 export DENO_INSTALL="/home/fain/.deno"
