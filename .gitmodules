@@ -1,9 +1,8 @@
-[submodule ".config/emacsdir/doomemacs"]
-	path = .config/emacsdir/doomemacs
+[submodule ".config/emacs"]
+	path = .config/emacs
 	url = https://github.com/doomemacs/doomemacs
 [submodule ".config/doom"]
 	path = .config/doom
-	url = https://github.com/FikriRNurhidayat/doom-emacs
-[submodule ".local/emacsdir/doomemacs"]
-	path = .local/emacsdir/doomemacs
+	url = git@github.com:fikrirnurhidayat/doom-emacs
+[submodule ".local/share/emacsdir/doomemacs"]
 	url = https://github.com/doomemacs/doomemacs
