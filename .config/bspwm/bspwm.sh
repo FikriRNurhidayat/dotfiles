@@ -45,11 +45,10 @@ export SSH_AUTH_SOCK
 # see https://github.com/NixOS/nixpkgs/issues/14966#issuecomment-520083836
 mkdir -p "$HOME"/.local/share/keyrings
 
+systemctl --user import-environment DISPLAY
+
 # Set keyboard rate
 xset r rate 300 75
-
-# fireup notification daemon
-dunst &
 
 # Hide your mouse cursor when it has no input
 unclutter &
