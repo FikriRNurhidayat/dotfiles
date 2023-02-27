@@ -16,18 +16,13 @@ return require('packer').startup(function()
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- Vim Markdown
-  use 'tpope/vim-markdown'
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-
   -- Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     ensure_installed = {
+      "markdown",
+      "markdown_inline",
       "http",
       "json",
       "html",
@@ -80,24 +75,13 @@ return require('packer').startup(function()
     },
   }
 
-  -- Trouble
-  use {
-    "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
-    end
-  }
-
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
+
+  use {'nvim-telescope/telescope-ui-select.nvim' }
 
   -- Nord
   use({
@@ -109,37 +93,5 @@ return require('packer').startup(function()
     'elkowar/yuck.vim',
     commit = "9b5e0370f70cc30383e1dabd6c215475915fe5c3",
   })
-
-  -- Rest Nvim
-  use {
-  "NTBBloodbath/rest.nvim",
-  requires = { "nvim-lua/plenary.nvim" },
-  config = function()
-    require("rest-nvim").setup({
-      -- Open request results in a horizontal split
-      result_split_horizontal = false,
-      -- Keep the http file buffer above|left when split horizontal|vertical
-      result_split_in_place = false,
-      -- Skip SSL verification, useful for unknown certificates
-      skip_ssl_verification = false,
-      -- Highlight request on run
-      highlight = {
-        enabled = true,
-        timeout = 150,
-      },
-      result = {
-        -- toggle showing URL, HTTP info, headers at top the of result window
-        show_url = true,
-        show_http_info = true,
-        show_headers = true,
-      },
-      -- Jump to request line on run
-      jump_to_request = false,
-      env_file = '.env',
-      custom_dynamic_variables = {},
-      yank_dry_run = true,
-    })
-  end
-}
 
 end)

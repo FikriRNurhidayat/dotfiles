@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -78,11 +83,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/kotlin-vim",
     url = "https://github.com/udalov/kotlin-vim"
-  },
-  ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/home/fain/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
-    url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["nord.nvim"] = {
     loaded = true,
@@ -136,12 +136,6 @@ _G.packer_plugins = {
     path = "/home/fain/.local/share/nvim/site/pack/packer/opt/rasi.vim",
     url = "https://github.com/Fymyte/rasi.vim"
   },
-  ["rest.nvim"] = {
-    config = { "\27LJ\2\n¶\2\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0024\3\0\0=\3\b\2B\0\2\1K\0\1\0\29custom_dynamic_variables\vresult\1\0\3\rshow_url\2\17show_headers\2\19show_http_info\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\6\renv_file\t.env\20jump_to_request\1\26skip_ssl_verification\1\26result_split_in_place\1\28result_split_horizontal\1\17yank_dry_run\2\nsetup\14rest-nvim\frequire\0" },
-    loaded = true,
-    path = "/home/fain/.local/share/nvim/site/pack/packer/start/rest.nvim",
-    url = "https://github.com/NTBBloodbath/rest.nvim"
-  },
   ["rust.vim"] = {
     loaded = true,
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/rust.vim",
@@ -151,12 +145,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["trouble.nvim"] = {
-    config = { "\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0" },
-    loaded = true,
-    path = "/home/fain/.local/share/nvim/site/pack/packer/start/trouble.nvim",
-    url = "https://github.com/folke/trouble.nvim"
   },
   ["vim-css-color"] = {
     loaded = true,
@@ -168,11 +156,6 @@ _G.packer_plugins = {
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/vim-liquid",
     url = "https://github.com/tpope/vim-liquid"
   },
-  ["vim-markdown"] = {
-    loaded = true,
-    path = "/home/fain/.local/share/nvim/site/pack/packer/start/vim-markdown",
-    url = "https://github.com/tpope/vim-markdown"
-  },
   ["vim-rails"] = {
     loaded = true,
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/vim-rails",
@@ -182,18 +165,15 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fain/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["yuck.vim"] = {
+    loaded = true,
+    path = "/home/fain/.local/share/nvim/site/pack/packer/start/yuck.vim",
+    url = "https://github.com/elkowar/yuck.vim"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: rest.nvim
-time([[Config for rest.nvim]], true)
-try_loadstring("\27LJ\2\n¶\2\0\0\4\0\t\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\6\0=\3\a\0024\3\0\0=\3\b\2B\0\2\1K\0\1\0\29custom_dynamic_variables\vresult\1\0\3\rshow_url\2\17show_headers\2\19show_http_info\2\14highlight\1\0\2\fenabled\2\ftimeout\3–\1\1\0\6\renv_file\t.env\20jump_to_request\1\26skip_ssl_verification\1\26result_split_in_place\1\28result_split_horizontal\1\17yank_dry_run\2\nsetup\14rest-nvim\frequire\0", "config", "rest.nvim")
-time([[Config for rest.nvim]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\ftrouble\frequire\0", "config", "trouble.nvim")
-time([[Config for trouble.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
@@ -206,6 +186,13 @@ time([[Sourcing ftdetect script at: /home/fain/.local/share/nvim/site/pack/packe
 vim.cmd [[source /home/fain/.local/share/nvim/site/pack/packer/opt/rasi.vim/ftdetect/rasi.vim]]
 time([[Sourcing ftdetect script at: /home/fain/.local/share/nvim/site/pack/packer/opt/rasi.vim/ftdetect/rasi.vim]], false)
 vim.cmd("augroup END")
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)
