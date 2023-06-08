@@ -26,3 +26,7 @@ alias conf-dunst="cd $DOTFILES/.config/dunst && nvim dunstrc"
 alias conf-gtk-3.0="cd $DOTFILES/.config/gtk-3.0 && nvim settings.ini"
 alias conf-sxhkd="cd $DOTFILES/.config/sxhkd && nvim sxhkdrc"
 alias conf-vis="cd $DOTFILES/.config/vis && nvim config"
+
+if test $TERM = "kitty"; then
+  alias ssh="kitty +kitten ssh"
+fi

@@ -87,3 +87,12 @@ source $HOME/.config/sh/aliases
 
 # Shared function between shell
 source $HOME/.config/sh/func
+
+# pnpm
+export PNPM_HOME="/home/fain/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+alias pnpx='pnpm dlx'
+# pnpm end

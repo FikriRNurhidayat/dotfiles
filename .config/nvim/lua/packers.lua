@@ -59,7 +59,13 @@ return require('packer').startup(function()
   use { 'tpope/vim-rails' }
 
   -- Auto completion
-  use { 'hrsh7th/nvim-compe' }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'dcampos/nvim-snippy'
+  use 'dcampos/cmp-snippy'
 
   -- Github Theme
   use "projekt0n/github-nvim-theme"
@@ -93,5 +99,4 @@ return require('packer').startup(function()
     'elkowar/yuck.vim',
     commit = "9b5e0370f70cc30383e1dabd6c215475915fe5c3",
   })
-
 end)

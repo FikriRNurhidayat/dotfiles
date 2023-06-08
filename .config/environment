@@ -9,8 +9,11 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # The next lines set new variables for Golang
 # also it updates PATH for golang binaries
 export GOARCH="amd64"
-export GOPATH="$HOME/Repositories/GO"
+export GOPATH="$HOME/.local/share/go"
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
+# Rust
+export PATH="$PATH:$HOME/.cargo/bin"
 
 # Doom emacs
 export PATH="$PATH:$HOME/.config/emacs/bin"
@@ -36,11 +39,5 @@ export DOTFILES="$HOME/.dotfiles"
 # Flutter requires chome sadly.
 export CHROME_EXECUTABLE="brave"
 
-# GKE Things
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/fain/.local/share/google-cloud-sdk/path.zsh.inc' ]; then . '/home/fain/.local/share/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/fain/.local/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/fain/.local/share/google-cloud-sdk/completion.zsh.inc'; fi
-
-export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+# Proton
+export PATH="$PATH:$HOME/.steam/root/steamapps/common/Proton 7.0"

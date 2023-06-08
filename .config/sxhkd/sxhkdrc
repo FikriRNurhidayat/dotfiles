@@ -28,7 +28,7 @@ super + e
 
 # brave
 super + b
-  brave
+  brave --profile-directory Fain
 
 #
 # bspwm hotkeys
@@ -44,6 +44,10 @@ super + n + r
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
+
+# even layout
+super + alt + e
+	bsp-layout set even 5 --master-size 0.5
 
 # alternate between the tiled and monocle layout
 super + m

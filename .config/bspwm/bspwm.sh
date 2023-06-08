@@ -50,12 +50,12 @@ systemctl --user import-environment DISPLAY
 systemctl --user start dunst
 
 # Set keyboard rate
-xset r rate 300 75
+xset r rate 250 75
 
 # Hide your mouse cursor when it has no input
 unclutter &
 
 # Cause screen tearing I guess
-picom -f &
+picom &
 
 exec bspwm

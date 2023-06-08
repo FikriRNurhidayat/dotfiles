@@ -32,3 +32,4 @@ nnoremap <silent> <leader>o :call SynStack()<CR>
 source $HOME/.config/nvim/keys/lsp.vim
 source $HOME/.config/nvim/keys/autocomplete.vim
 source $HOME/.config/nvim/keys/telescope.vim
+source $HOME/.config/nvim/keys/ui.vim

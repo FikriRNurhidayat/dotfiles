@@ -7,8 +7,8 @@ luafile $HOME/.config/nvim/lua/lsp/typescript.lua
 luafile $HOME/.config/nvim/lua/lsp/go.lua
 luafile $HOME/.config/nvim/lua/plugins/github-theme.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-tree.lua
+luafile $HOME/.config/nvim/lua/plugins/nvim-cmp.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-treesitter.lua
 luafile $HOME/.config/nvim/lua/plugins/nvim-web-devicons.lua
-luafile $HOME/.config/nvim/lua/plugins/nvim-compe.lua
 luafile $HOME/.config/nvim/lua/plugins/telescope.lua
 luafile $HOME/.config/nvim/lua/colors/me.lua
