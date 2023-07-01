@@ -28,7 +28,7 @@ super + e
 
 # brave
 super + b
-  brave --profile-directory Fain
+  brave
 
 #
 # bspwm hotkeys
