@@ -3,29 +3,32 @@
 # Editor stuff
 alias vim="nvim"
 alias v="nvim"
+alias edit="$EDITOR"
 
 # Configuration stuff
-alias conf-dotfiles="cd $DOTFILES && nvim"
+alias conf-dotfiles="cd $DOTFILES && $EDITOR"
 
 # Single file configuration
-alias conf-picom="nvim $DOTFILES/.config/picom.conf"
-alias conf-aliases="nvim $DOTFILES/.config/sh/aliases"
-alias conf-environment="nvim $DOTFILES/.config/environment"
-alias conf-gtkrc-2.0="nvim $DOTFILES/.gtkrc-2.0"
+alias conf-picom="$EDITOR $DOTFILES/.config/picom.conf"
+alias conf-aliases="$EDITOR $DOTFILES/.config/sh/aliases"
+alias conf-environment="$EDITOR $DOTFILES/.config/environment"
+alias conf-gtkrc-2.0="$EDITOR $DOTFILES/.gtkrc-2.0"
+alias conf-hyprland="$EDITOR $DOTFILES/.config/hypr/hyprland.conf"
+alias conf-waybar="$EDITOR $DOTFILES/.config/waybar/config"
 
 # Configure desktop shortcuts
-alias conf-desktop="nvim $HOME/.local/share/applications"
+alias conf-desktop="$EDITOR $HOME/.local/share/applications"
 
 # Directory configuration
-alias conf-bspwm="cd $DOTFILES/.config/bspwm && nvim bspwmrc"
-alias conf-nvim="cd $DOTFILES/.config/nvim && nvim init.vim"
-alias conf-rofi="cd $DOTFILES/.config/rofi && nvim config.rasi"
-alias conf-kitty="cd $DOTFILES/.config/kitty && nvim kitty.conf"
-alias conf-polybar="cd $DOTFILES/.config/polybar && nvim config"
-alias conf-dunst="cd $DOTFILES/.config/dunst && nvim dunstrc"
-alias conf-gtk-3.0="cd $DOTFILES/.config/gtk-3.0 && nvim settings.ini"
-alias conf-sxhkd="cd $DOTFILES/.config/sxhkd && nvim sxhkdrc"
-alias conf-vis="cd $DOTFILES/.config/vis && nvim config"
+alias conf-bspwm="cd $DOTFILES/.config/bspwm && $EDITOR bspwmrc"
+alias conf-$EDITOR="cd $DOTFILES/.config/$EDITOR && $EDITOR init.vim"
+alias conf-rofi="cd $DOTFILES/.config/rofi && $EDITOR config.rasi"
+alias conf-kitty="cd $DOTFILES/.config/kitty && $EDITOR kitty.conf"
+alias conf-polybar="cd $DOTFILES/.config/polybar && $EDITOR config"
+alias conf-dunst="cd $DOTFILES/.config/dunst && $EDITOR dunstrc"
+alias conf-gtk-3.0="cd $DOTFILES/.config/gtk-3.0 && $EDITOR settings.ini"
+alias conf-sxhkd="cd $DOTFILES/.config/sxhkd && $EDITOR sxhkdrc"
+alias conf-vis="cd $DOTFILES/.config/vis && $EDITOR config"
 
 if test $TERM = "kitty"; then
   alias ssh="kitty +kitten ssh"

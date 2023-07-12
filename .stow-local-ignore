@@ -22,3 +22,16 @@ _darcs
 ^/COPYING
 
 screenshots
+
+# Currently not using this
+.gtkrc-2.0
+.config/gtk-3.0
+.config/bspwm
+.config/dunst
+.config/nvim
+.config/neofetch
+.config/polybar
+.config/rofi
+.config/sxhkd
+.config/vis
+.config/zathura
