@@ -1,8 +1,0 @@
-colors.override.terminal=false
-visualizer.fps=24
-visualizer.spectrum.bar.width=1
-visualizer.spectrum.smoothing.mode=sgs
-visualizer.spectrum.color.scheme=blue
-color.scheme=blue
-visualizers=spectrum
-audio.stereo.enabled=false
