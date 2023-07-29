@@ -1,0 +1,14 @@
+#!/bin/sh
+
+options="shutdown\nrestart"
+
+choosen="$(echo -e "$options" | dmenu)"
+
+case $choosen in
+    shutdown)
+        shutdown now
+        ;;
+    restart)
+        reboot
+        ;;
+esac

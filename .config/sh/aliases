@@ -2,6 +2,7 @@
 
 # Editor stuff
 alias edit="$EDITOR"
+alias e="$EDITOR"
 
 # Configuration stuff
 alias conf-dotfiles="cd $DOTFILES && $EDITOR"
@@ -11,6 +12,7 @@ alias conf-picom="$EDITOR $DOTFILES/.config/picom.conf"
 alias conf-aliases="$EDITOR $DOTFILES/.config/sh/aliases"
 alias conf-environment="$EDITOR $DOTFILES/.config/environment"
 alias conf-gtkrc-2.0="$EDITOR $DOTFILES/.gtkrc-2.0"
+alias conf-kitty="$EDITOR $DOTFILES/.config/kitty/kitty.conf"
 
 # Configure desktop shortcuts
 alias conf-desktop="$EDITOR $HOME/.local/share/applications"
