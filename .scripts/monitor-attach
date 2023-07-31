@@ -2,5 +2,5 @@
 
 xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 120 --output eDP-1 --mode 1920x1080 --right-of HDMI-1
 
-feh --bg-fill /usr/share/backgrounds/default.jpg 
+feh --bg-fill ~/Pictures/Wallpaper
 

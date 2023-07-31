@@ -64,13 +64,37 @@ XClock*hourColor:   rgba:{color15.xrgba}
 XClock*minuteColor: rgba:{color15.xrgba}
 XClock*secondColor: rgba:{color15.xrgba}
 
-! Set depth to make transparency work.
-URxvt*depth: 32
-
-! DWM
+! dwm
 dwm.normbordercolor: {foreground}
 dwm.normbgcolor: {background}
 dwm.normfgcolor: {foreground}
 dwm.selbordercolor: {color2}
 dwm.selbgcolor: {color2}
 dwm.selfgcolor: {background}
+
+! dmenu
+dmenu.background: {background}
+dmenu.foreground: {foreground}
+dmenu.selbackground: {color2}
+dmenu.selforeground: {background}
+
+! st
+st.background: {background}
+st.foreground: {foreground}
+st.cursorColor: {color4}
+st.color0: {color0}
+st.color1: {color1}
+st.color2: {color2}
+st.color3: {color3}
+st.color4: {color4}
+st.color5: {color5}
+st.color6: {color6}
+st.color7: {color7}
+st.color8: {color8}
+st.color9: {color9}
+st.color10: {color10}
+st.color11: {color11}
+st.color12: {color12}
+st.color13: {color13}
+st.color14: {color14}
+st.color15: {color15}

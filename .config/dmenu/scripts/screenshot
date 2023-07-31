@@ -3,7 +3,8 @@
 
 options="screen\nrectangle\nwindow"
 
-chosen="$(echo -e "$options" | dmenu)"
+chosen="$(echo -e "$options" | dmenu -p "capture" -vp 16 -c -l 3)"
+
 if [[ -f /usr/bin/maim ]]; then
   filename=$(date '+%F-%H-%M-%S').png
   screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
