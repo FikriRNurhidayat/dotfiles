@@ -7,7 +7,9 @@ Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 
 ! dmenu
-dmenu.font: Iosevka Aile:style=medium:hinting=true:antialias=true
+dmenu.font: Iosevka Aile:style=medium:hinting=true:antialias=true:size=12
+dmenu.center: 1
+dmenu.vertpad: 16
 
 ! st
 st.font: Iosevka Term:style=medium:hinting:antialias=true:size=12
