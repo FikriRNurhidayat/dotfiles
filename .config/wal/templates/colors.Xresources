@@ -75,8 +75,9 @@ dwm.selfgcolor: {background}
 ! dmenu
 dmenu.background: {background}
 dmenu.foreground: {foreground}
-dmenu.selbackground: {color2}
-dmenu.selforeground: {background}
+dmenu.selbackground: {background}
+dmenu.selforeground: {color2}
+dmenu.border: {color2}
 
 ! st
 st.background: {background}

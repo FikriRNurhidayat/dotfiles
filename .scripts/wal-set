@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wal $@
+pywalfox update
+wal-telegram

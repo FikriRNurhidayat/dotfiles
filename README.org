@@ -43,46 +43,32 @@ Choice of software to be used to cater the daily drive needs *MUST* be an effici
 
 The look of my desktop and what ever it is that I configure *MUST* be aethectically pleasing to my eyes, so I don't care about bloat since I use modern computer anyway. The aesthetic point *MUST* not contradict the simple principle and efficiency.
 
+* Software Used
+
+- [[https://github.com/fikrirnurhidayat/dwm][My dwm build]] (window manager)
+- [[https://github.com/fikrirnurhidayat/slstatus][My slstatus build]] (status info)
+- [[https://github.com/fikrirnurhidayat/st][My st build]] (terminal)
+- [[https://github.com/dunst-project/dunst][dunst]] (notification backend)
+- [[https://www.gnu.org/software/emacs/][emacs]] (not just a text editor)
+
+* Dude, your documentation sucks!
+
+Yeah, I know, send me an [[mailto:fikrirnurhidayat@gmail.com][email]] if you have any question tho.
+  
 * Screenshots
 
 *emacs*
 
-#+name: emacs
-#+attr_html: :width 100%
 [[./screenshots/emacs.png]]
-
-*emacs, powermenu and bashtop*
-
-#+name: emacs-plus-bashtop-plus-powermenu
-#+attr_html: :width 100%
-[[./screenshots/emacs-plus-bashtop-plus-powermenu.png]]
-
-*emacs, and kitty*
-
-#+name: emacs-plus-terminal
-#+attr_html: :width 100%
-[[./screenshots/emacs-plus-terminal.png]]
-
-*slack and telegram*
-
-#+name: slack
-#+attr_html: :width 100%
-[[./screenshots/slack.png]]
 
 *telegram*
 
-#+name: slack
-#+attr_html: :width 100%
 [[./screenshots/telegram.png]]
 
-*dunst*
+*st*
 
-#+name: dunst
-#+attr_html: :width 100%
-[[./screenshots/dunst.png]]
+[[./screenshots/st.png]]
 
-*rofi*
+*dwm*
 
-#+name: rofi
-#+attr_html: :width 100%
-[[./screenshots/rofi.png]]
+[[./screenshots/dwm.png]]

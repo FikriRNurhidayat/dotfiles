@@ -1,8 +1,8 @@
 #!/bin/sh
 
-options="shutdown\nrestart"
+options="shutdown\nrestart\nsuspend"
 
-choosen="$(echo -e "$options" | dmenu -p "power " -vp 16 -c -l 3)"
+choosen="$(echo -e "$options" | dmenu -p " " -vp 16 -c -l 3)"
 
 case $choosen in
     shutdown)
@@ -10,5 +10,8 @@ case $choosen in
         ;;
     restart)
         reboot
+        ;;
+    suspend)
+        systemctl suspend
         ;;
 esac

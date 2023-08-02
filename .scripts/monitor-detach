@@ -1,5 +1,5 @@
 #!/bin/sh
 
-xrandr --output eDP-1 --primary --mode 1920x1080
+xrandr --output eDP-1 --primary --mode 1920x1080 --output HDMI-1 --off
 
-feh --bg-fill /usr/share/backgrounds/default.jpg
+feh --bg-fill ~/Pictures/Wallpaper 

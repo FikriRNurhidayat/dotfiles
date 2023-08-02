@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=System Usage
+Comment=System usage information
+Categories=System;
+Keywords=system;
+Icon=CPU
+Type=Application
+Exec=st -e htop
+Terminal=true
+StartupWMClass=System Usage

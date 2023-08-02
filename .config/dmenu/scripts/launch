@@ -31,7 +31,7 @@ done
 options=$(echo -e "$options" | sed '$d')
 
 # Use dmenu to select a .desktop file
-chosen=$(echo -e "$options" | dmenu -l 5 -i -p 'app')
+chosen=$(echo -e "$options" | dmenu -l 5 -i -p ' ')
 
 # If user chose something, run the command
 if [ -n "$chosen" ]; then
