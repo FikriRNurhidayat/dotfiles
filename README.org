@@ -48,6 +48,7 @@ The look of my desktop and what ever it is that I configure *MUST* be aethectica
 - [[https://github.com/fikrirnurhidayat/dwm][My dwm build]] (window manager)
 - [[https://github.com/fikrirnurhidayat/slstatus][My slstatus build]] (status info)
 - [[https://github.com/fikrirnurhidayat/st][My st build]] (terminal)
+- [[https://github.com/fikrirnurhidayat/dmenu][My dmenu build]] (not just an application launcher)
 - [[https://github.com/dunst-project/dunst][dunst]] (notification backend)
 - [[https://www.gnu.org/software/emacs/][emacs]] (not just a text editor)
 
