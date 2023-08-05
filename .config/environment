@@ -1,6 +1,8 @@
 #!/bin/sh
 
 export EDITOR="emacsclient -nw"
+export TERMINAL="st"
+export TOP="htop"
 
 # The next line updates PATH for the rvm
 export PATH="$PATH:$HOME/.rvm/bin"

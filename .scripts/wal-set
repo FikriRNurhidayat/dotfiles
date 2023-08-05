@@ -3,3 +3,6 @@
 wal $@
 pywalfox update
 wal-telegram
+
+systemctl --user restart emacs
+systemctl --user restart dunst
