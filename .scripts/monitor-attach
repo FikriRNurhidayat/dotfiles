@@ -1,6 +1,6 @@
 #!/bin/sh
 
-xrandr --output HDMI-1 --primary --mode 1920x1080 --rate 120 --output eDP-1 --mode 1920x1080 --right-of HDMI-1
+xrandr --output eDP-1 --mode 1920x1080 --below HDMI-1 --output HDMI-1 --primary --mode 1920x1080 --rate 120
 
 feh --bg-fill ~/Pictures/Wallpaper
 

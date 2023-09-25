@@ -69,8 +69,11 @@ dwm.normbordercolor: {foreground}
 dwm.normbgcolor: {background}
 dwm.normfgcolor: {foreground}
 dwm.selbordercolor: {color2}
-dwm.selbgcolor: {color2}
-dwm.selfgcolor: {background}
+dwm.selbgcolor: {background}
+dwm.selfgcolor: {color2}
+dwm.dormbordercolor: {color8}
+dwm.dormbgcolor: {background}
+dwm.dormfgcolor: {color8}
 
 ! dmenu
 dmenu.background: {background}
@@ -99,3 +102,7 @@ st.color12: {color12}
 st.color13: {color13}
 st.color14: {color14}
 st.color15: {color15}
+
+! sent
+sent.background: {background}
+sent.foreground: {foreground}

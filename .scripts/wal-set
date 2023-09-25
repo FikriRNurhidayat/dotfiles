@@ -1,8 +1,14 @@
 #!/bin/sh
 
-wal $@
+walfile=$1
+
+wal -i $walfile
 pywalfox update
 wal-telegram
+
+cp $walfile ~/Pictures/Wallpaper
+
+cp $HOME/.cache/wal/dunstrc $HOME/.dotfiles/.config/dunst/dunstrc 
 
 systemctl --user restart emacs
 systemctl --user restart dunst

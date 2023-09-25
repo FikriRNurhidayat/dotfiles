@@ -1,7 +1,7 @@
-gtk-theme-name="Nordic"
-gtk-icon-theme-name="Papirus-Dark"
-gtk-font-name="Noto Serif 12"
-gtk-cursor-theme-name="Nordzy"
+gtk-theme-name="oomox-xresources"
+gtk-icon-theme-name="oomox-xresources"
+gtk-font-name="Iosevka Etoile 10"
+gtk-cursor-theme-name="oomox-xresources"
 gtk-cursor-theme-size=0
 gtk-button-images=0
 gtk-menu-images=0
