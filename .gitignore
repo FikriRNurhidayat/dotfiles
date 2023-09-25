@@ -4,12 +4,13 @@
 *#
 
 .local/share/applications/
-.config/
 !.config/gtk-2.0/
 !.config/gtk-3.0/
 !.config/fontconfig/
 !.config/gresemacs/
 !.config/oomoox/
 !.config/environment
-!.config/wal
-!.config/zathura
+!.config/wal/
+!.config/zathura/
+!.config/dunst/
+.config/
