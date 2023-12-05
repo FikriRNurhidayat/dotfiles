@@ -1,5 +1,3 @@
 #!/bin/sh
 
 slstatus &
-
-picom &

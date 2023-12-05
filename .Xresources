@@ -7,13 +7,13 @@ Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 
 ! dmenu
-dmenu.font: Iosevka Aile:style=medium:hinting=true:antialias=true:size=12
+dmenu.font: IBM Plex Sans:style=medium:hinting=true:antialias=true:size=12
 dmenu.center: 1
 dmenu.vertpad: 16
 
 ! st
-st.font: Iosevka Term:style=medium:hinting=true:antialias=true:size=12
+st.font: IBM Plex Mono:style=medium:hinting=true:antialias=true:size=12
 st.borderpx: 24
 
 ! sent
-sent.font: Iosevka Etoile:style=medium:hinting=true:antialias:true, Symbols Nerd Font:antialias=true:hinting=true
+sent.font: IBM Plex Serif:style=medium:hinting=true:antialias:true, Symbols Nerd Font:antialias=true:hinting=true

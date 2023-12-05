@@ -8,7 +8,8 @@ wal-telegram
 
 cp $walfile ~/Pictures/Wallpaper
 
-cp $HOME/.cache/wal/dunstrc $HOME/.dotfiles/.config/dunst/dunstrc 
+cp $HOME/.cache/wal/dunstrc $HOME/.dotfiles/.config/dunst/dunstrc
+cp $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
 
 systemctl --user restart emacs
 systemctl --user restart dunst

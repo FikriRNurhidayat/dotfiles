@@ -79,29 +79,11 @@ source $ZSH/oh-my-zsh.sh
 # Sourc profile
 source $HOME/.profile
 
-# Shared environment variable between shell
-source $HOME/.config/environment
-
 # Shared aliases between shell
 source $HOME/.config/sh/aliases
 
 # Shared function between shell
 source $HOME/.config/sh/func
-
-# pnpm
-export PNPM_HOME="/home/fain/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-alias pnpx='pnpm dlx'
-# pnpm end
-
-PATH="/home/fain/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/fain/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/fain/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/fain/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/fain/perl5"; export PERL_MM_OPT;
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
