@@ -1,6 +1,7 @@
 #!/bin/sh
 
-export EDITOR="emacsclient -nw"
+export EDITOR="emacsclient -nw -a ''"
+export VISUAL="emacsclient -nc -a ''"
 export TERMINAL="st"
 export TOP="htop"
 
