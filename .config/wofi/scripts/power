@@ -1,0 +1,17 @@
+#!/bin/sh
+
+options="shutdown\nrestart\nsuspend"
+
+choosen="$(echo -e "$options" | dmenu -p " " -vp 16 -c -l 3)"
+
+case $choosen in
+    shutdown)
+        shutdown now
+        ;;
+    restart)
+        reboot
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+esac

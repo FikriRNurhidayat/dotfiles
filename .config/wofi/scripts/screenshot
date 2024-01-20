@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+options="screen\nrectangle\nwindow"
+
+chosen="$(echo -e "$options" | wofi --dmenu)"
+
+if [[ -f /usr/bin/grim ]]; then
+  filename=$(date '+%F-%H-%M-%S').png
+  screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
+  mkdir -p $screenshotdir
+  f="$screenshotdir/$filename"
+
+  case $chosen in
+      screen)
+      sleep 1
+      grim
+          ;;
+      rectangle)
+      grim
+          ;;
+      window)
+      grim
+          ;;
+  esac
+fi

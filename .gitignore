@@ -5,13 +5,10 @@
 
 .local/share/applications/
 .local/
-!.config/gtk-2.0/
-!.config/gtk-3.0/
-!.config/fontconfig/
-!.config/gresemacs/
-!.config/oomoox/
-!.config/environment
-!.config/wal/
-!.config/zathura/
-!.config/dunst/
-.config/
+.config/gresemacs/
+.config/bashtop
+.config/htop
+.config/obs-studio/
+.config/oomox/
+.config/qt5ct
+.config/qt6ct

@@ -1,0 +1,60 @@
+@import "colors.css";
+
+* {
+    font-family: IBM Plex Mono, Symbols Nerd Font, monospace;
+    font-size: 12px;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: @foreground;
+}
+
+#workspaces button:hover {
+    background: @foreground;
+    color: @background;
+}
+
+#workspaces button.focused {
+    background-color: transparent;
+    color: @color2;
+}
+
+#workspaces button.urgent {
+    background-color: @foreground;
+    color: @background;
+}
+
+@keyframes blink {
+    to {
+        color: @color2;
+    }
+}
+
+#battery {
+    padding: 0 4px;
+}
+
+#battery.critical:not(.charging) {
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network.disconnected {
+    color: @color8;
+}

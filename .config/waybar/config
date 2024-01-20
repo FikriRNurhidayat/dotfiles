@@ -1,0 +1,55 @@
+{
+    "height": 48,
+    "spacing": 32,
+    "margin-left": 16,
+    "margin-right": 16,
+    "modules-left": ["sway/workspaces"],
+    "modules-center": ["clock#time"],
+    "modules-right": ["battery", "network", "clock#date", "clock#week", "tray"],
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "disable-click": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "urgent": "!"
+        }
+    },
+    "tray": {
+        "icon-size": 12,
+        "spacing": 32
+    },
+    "clock#date": {
+        "format": "{:%d %B %Y}"
+    },
+    "clock#time": {
+        "format": "{:%H:%M}"
+    },
+    "clock#week": {
+        "format": "Week {:%W}"
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}%  {icon}",
+        "format-plugged": "{capacity}%  {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "network": {
+        "format-wifi": "󰅟",
+        "format-ethernet": "󰅟",
+        "format-linked": "󰅟",
+        "format-disconnected": "󰅤",
+        "format-alt": "{essid} 󰅟"
+    }
+}
+
