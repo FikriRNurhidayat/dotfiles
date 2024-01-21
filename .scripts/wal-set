@@ -4,7 +4,7 @@ walfile=$1
 
 wal -i $walfile
 pywalfox update
-wal-telegram
+wal-telegram --wal
 
 sed -i 's/#//g' "$HOME/.cache/wal/colors-foot"
 cp $HOME/.config/foot/foot.template.ini $HOME/.config/foot/foot.ini
@@ -14,4 +14,7 @@ cp $walfile ~/Pictures/Wallpaper
 cp $HOME/.cache/wal/dunstrc $HOME/.dotfiles/.config/dunst/dunstrc
 cp $HOME/.cache/wal/colors-waybar.css $HOME/.dotfiles/.config/waybar/colors.css
 
-systemctl --user restart dunst
+if command -v dunst >/dev/null 2>&1; then
+    systemctl --user restart dunst
+fi
+

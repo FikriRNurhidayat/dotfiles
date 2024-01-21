@@ -55,3 +55,5 @@ export PATH="$PATH:$HOME/.local/share/google-cloud-sdk/bin"
 
 # vkQuake
 export PATH="$PATH:$HOME/Trashes/Repositories/vkQuake/build"
+
+export PATH="$PATH:$HOME/.local/src/wal-telegram"

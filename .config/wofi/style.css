@@ -1,0 +1,64 @@
+@import ".config/wofi/colors.css";
+
+* {
+    font-family: IBM Plex Sans;
+    font-weight: bold;    
+}
+
+*:focus {
+    outline: none;
+}
+
+#window {
+    background: @color14;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1pt solid @color1;
+}
+
+#input {
+    background-color: @color1;
+    border: 1pt solid @color1;
+    border-radius: 0;
+    padding: 1rem;
+    outline: none !important;
+    outline-width: 0;
+}
+
+#input:focus {
+    border: 1pt solid @color1;
+    border-radius: 0;
+    outline: none !important;
+    outline-width: 0;
+}
+
+
+#img {
+    margin-right: 1rem;
+}
+
+#entry {
+    padding: 1rem;
+    color: @color1;
+    background: none;
+}
+
+#outer-box {
+    border-radius: 1rem;
+}
+
+#entry:selected {
+    color: @color1;
+    border: none !important;
+}
+
+#text {
+    color: @color10;
+}
+
+#text:selected {
+    color: @color1;
+    border: none !important;
+    border-radius: 1rem;
+}

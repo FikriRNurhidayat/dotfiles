@@ -3,10 +3,12 @@
 * {
     font-family: IBM Plex Mono, Symbols Nerd Font, monospace;
     font-size: 12px;
+    font-weight: bold;
 }
 
 window#waybar {
-    background-color: transparent;
+    background-color: @background;
+    opacity: 0.8;
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
@@ -17,7 +19,7 @@ window#waybar.hidden {
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 1rem;
     background-color: transparent;
     color: @foreground;
 }
@@ -57,4 +59,8 @@ window#waybar.hidden {
 
 #network.disconnected {
     color: @color8;
+}
+
+#tray {
+    padding-right: 2rem;
 }

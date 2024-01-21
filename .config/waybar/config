@@ -1,8 +1,8 @@
 {
     "height": 48,
     "spacing": 32,
-    "margin-left": 16,
-    "margin-right": 16,
+    "margin-left": 0,
+    "margin-right": 0,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["clock#time"],
     "modules-right": ["battery", "network", "clock#date", "clock#week", "tray"],
@@ -13,11 +13,11 @@
         "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "二",
             "urgent": "!"
         }
     },
