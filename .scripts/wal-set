@@ -13,6 +13,12 @@ cat $HOME/.cache/wal/colors-foot >> $HOME/.config/foot/foot.ini
 cp $walfile ~/Pictures/Wallpaper
 cp $HOME/.cache/wal/dunstrc $HOME/.dotfiles/.config/dunst/dunstrc
 cp $HOME/.cache/wal/colors-waybar.css $HOME/.dotfiles/.config/waybar/colors.css
+cp $HOME/.cache/wal/colors-waybar.css $HOME/.dotfiles/.config/wofi/colors.css
+
+if command -v mako > /dev/null 2>&1; then
+    echo "Hello World"
+    $HOME/.config/mako/update-theme.sh
+fi
 
 if command -v dunst >/dev/null 2>&1; then
     systemctl --user restart dunst
