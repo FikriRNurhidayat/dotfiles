@@ -8,7 +8,6 @@
 
 window#waybar {
     background-color: @background;
-    opacity: 0.8;
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;

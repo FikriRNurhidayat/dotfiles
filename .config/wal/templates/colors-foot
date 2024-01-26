@@ -4,7 +4,7 @@
 color={background} {foreground}
 
 [colors]
-alpha=0.0
+alpha=0.8
 foreground={foreground}
 background={background}
 regular0={color0}

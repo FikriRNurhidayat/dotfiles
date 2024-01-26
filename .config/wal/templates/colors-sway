@@ -1,0 +1,2 @@
+set $foreground {foreground}
+set $background {background}
