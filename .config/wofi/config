@@ -19,5 +19,5 @@ location=center
 key_expand=Tab
 insensitive=true
 no_actions=true
-dynamic_lines=false
+dynamic_lines=true
 show_icons=false

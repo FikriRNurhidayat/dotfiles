@@ -14,26 +14,32 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term foot & disown
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $menu wofi --show drun
 set $editor emacsclient -nc -a ''
-set $browser librewolf
+set $browser thorium-browser
 
-gaps inner 0
-gaps outer 0
+gaps inner 16
+gaps outer 8
 
 default_border none
 default_floating_border none
 
-font pango:monospace 0
+font pango:JetBrains Mono 0
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $HOME/Pictures/Wallpaper fill
+
+for_window [app_id="Thorium-browser"] move container to workspace number 1
+for_window [app_id="Thorium-browser"] border none
+for_window [class="Emacs"] move container to workspace number 2
+for_window [app_id="foot"] move container to workspace number 3
+for_window [app_id="org.telegram.desktop"] move container to workspace number 4
 
 #
 # Example configuration:
@@ -79,9 +85,9 @@ input * {
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+Return exec $term
-    bindsym $mod+e exec $editor
-    bindsym $mod+b exec $browser
+    bindsym $mod+Return exec $term && swaymsg workspace number 3
+    bindsym $mod+e exec $editor && swaymsg '[class="Emacs"]' focus
+    bindsym $mod+b exec $browser && swaymsg '[app_id="LibreWolf"]' focus
 
     # Kill focused window
     bindsym $mod+q kill
@@ -102,9 +108,13 @@ input * {
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.scripts/volume up   
-    bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.scripts/volume down
-    bindsym XF86AudioMute exec --no-startup-id $HOME/.scripts/volume mute
+    bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.scripts/volumectl up   
+    bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.scripts/volumectl down
+    bindsym XF86AudioMute exec --no-startup-id $HOME/.scripts/volumectl mute
+    bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.scripts/backlightctl up
+    bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.scripts/backlightctl down
+    bindsym Print exec --no-startup-id $HOME/.config/wofi/scripts/screenshot
+    bindsym $mod+escape exec --no-startup-id $HOME/.config/wofi/scripts/power
 #
 # Moving around:
 #
@@ -137,13 +147,11 @@ input * {
     bindsym $mod+2 workspace number 2
     bindsym $mod+3 workspace number 3
     bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
     bindsym $mod+Shift+3 move container to workspace number 3
     bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
 #
 # Layout stuff:
 #
@@ -205,6 +213,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 #
@@ -221,5 +230,3 @@ client.focused $background $background $background $background $background
 client.unfocused $foreground $foreground $foreground $foreground $foreground
 
 include /etc/sway/config.d/*
-
-exec mako

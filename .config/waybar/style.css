@@ -1,46 +1,38 @@
 @import "colors.css";
 
 * {
-    font-family: IBM Plex Mono, Symbols Nerd Font, monospace;
+    font-family: JetBrains Mono, Symbols Nerd Font, monospace;
     font-size: 12px;
     font-weight: bold;
 }
 
 window#waybar {
-    background-color: @background;
-    color: @foreground;
-    transition-property: background-color;
-    transition-duration: .5s;
-}
-
-window#waybar.hidden {
-    opacity: 0.2;
+    background-color: transparent;
+    color: @text;
 }
 
 #workspaces button {
     padding: 0 1rem;
     background-color: transparent;
-    color: @foreground;
+    color: @overlay0;
 }
 
 #workspaces button:hover {
-    background: @foreground;
-    color: @background;
+    color: @text;
+    background-color: @base;
 }
 
 #workspaces button.focused {
-    background-color: transparent;
-    color: @color2;
+    color: @text;
 }
 
 #workspaces button.urgent {
-    background-color: @foreground;
-    color: @background;
+    color: @red;
 }
 
 @keyframes blink {
     to {
-        color: @color2;
+        color: @red;
     }
 }
 
@@ -57,7 +49,7 @@ window#waybar.hidden {
 }
 
 #network.disconnected {
-    color: @color8;
+    color: @red;
 }
 
 #tray {

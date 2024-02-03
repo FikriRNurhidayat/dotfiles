@@ -7,18 +7,13 @@
     "modules-center": ["clock#time"],
     "modules-right": ["battery", "network", "clock#date", "clock#week", "tray"],
     "sway/workspaces": {
-        "disable-scroll": true,
-        "disable-click": true,
-        "all-outputs": false,
-        "warp-on-scroll": false,
         "format": "{icon}",
         "format-icons": {
-            "1": "一",
-            "2": "二",
-            "3": "三",
-            "4": "四",
-            "5": "二",
-            "urgent": "!"
+            "1": "火",
+            "2": "水",
+            "3": "氣",
+            "4": "塵",
+            "urgent": "死"
         }
     },
     "tray": {

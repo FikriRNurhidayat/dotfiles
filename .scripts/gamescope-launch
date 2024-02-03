@@ -1,3 +1,0 @@
-#!/bin/sh
-
-STEAM_GAMESCOPE_VRR_SUPPORTED=1 STEAM_MULTIPLE_XWAYLANDS=1 gamescope -e -W 1920 -H 1080 --xwayland-count 2 --hdr-enabled --adaptive-sync -- steam -gamepadui -steamdeck

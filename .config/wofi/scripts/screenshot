@@ -14,13 +14,14 @@ if [[ -f /usr/bin/grim ]]; then
   case $chosen in
       screen)
       sleep 1
-      grim
+      sh -c "grim - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
       rectangle)
-      grim
+          sh -c "slurp | grim -g - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
       window)
-      grim
+          GEOMETRY=$(swaymsg -t get_tree | jq -r '.. | select(.nodes? // empty) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+          sh -c "grim -g '$GEOMETRY' - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
   esac
 fi

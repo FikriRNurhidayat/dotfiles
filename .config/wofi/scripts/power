@@ -2,7 +2,7 @@
 
 options="shutdown\nrestart\nsuspend"
 
-choosen="$(echo -e "$options" | dmenu -p " " -vp 16 -c -l 3)"
+choosen=$(echo -e "$options" | wofi --dmenu -p " ")
 
 case $choosen in
     shutdown)

@@ -1,7 +1,7 @@
 @import ".config/wofi/colors.css";
 
 * {
-    font-family: IBM Plex Sans;
+    font-family: JetBrains Mono;
     font-weight: bold;    
 }
 
@@ -10,16 +10,14 @@
 }
 
 #window {
-    background: @color14;
+    background: @base;
     margin: auto;
     padding: 1rem;
-    border-radius: 1rem;
-    border: 1pt solid @color1;
 }
 
 #input {
-    background-color: @color1;
-    border: 1pt solid @color1;
+    background-color: @crust;
+    color: @text;
     border-radius: 0;
     padding: 1rem;
     outline: none !important;
@@ -27,7 +25,8 @@
 }
 
 #input:focus {
-    border: 1pt solid @color1;
+    border: 1pt solid @text;
+    color: @text;
     border-radius: 0;
     outline: none !important;
     outline-width: 0;
@@ -40,7 +39,7 @@
 
 #entry {
     padding: 1rem;
-    color: @color1;
+    color: @text;
     background: none;
 }
 
@@ -49,16 +48,17 @@
 }
 
 #entry:selected {
-    color: @color1;
+    color: @red;
     border: none !important;
 }
 
 #text {
-    color: @color10;
+    color: @text;
+    padding: 1rem;
 }
 
 #text:selected {
-    color: @color1;
+    color: @red;
     border: none !important;
     border-radius: 1rem;
 }
