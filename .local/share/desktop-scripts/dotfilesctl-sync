@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $HOME/.dotfiles
+stow --target="$HOME" -S .

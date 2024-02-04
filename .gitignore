@@ -3,8 +3,8 @@
 *~
 *#
 
-.local/share/applications/
-.local/
+!.local/share/desktop-scripts/
+.local/share/*
 .config/gresemacs/
 .config/bashtop
 .config/htop
