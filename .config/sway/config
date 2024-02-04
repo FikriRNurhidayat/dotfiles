@@ -107,11 +107,11 @@ input * {
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.scripts/volumectl up   
-    bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.scripts/volumectl down
-    bindsym XF86AudioMute exec --no-startup-id $HOME/.scripts/volumectl mute
-    bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.scripts/backlightctl up
-    bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.scripts/backlightctl down
+    bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.local/share/desktop-scripts/volumectl up   
+    bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.local/share/desktop-scripts/volumectl down
+    bindsym XF86AudioMute exec --no-startup-id $HOME/.local/share/desktop-scripts/volumectl mute
+    bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.local/share/desktop-scripts/backlightctl up
+    bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.local/share/desktop-scripts/backlightctl down
     bindsym Print exec --no-startup-id $HOME/.config/wofi/scripts/screenshot
     bindsym $mod+escape exec --no-startup-id $HOME/.config/wofi/scripts/power
 #
