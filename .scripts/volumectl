@@ -16,7 +16,7 @@ function is_mute {
 
 function send_notification {
     volume=`get_volume`
-    dunstify -h int:value:$volume -i audio-volume-high -t 1000 -r 2593 "Volume" 
+    dunstify -h int:value:$volume -i audio-volume-high -t 1000 -r 2593 "Volume"
 }
 
 case $1 in

@@ -1,7 +1,7 @@
 @import "colors.css";
 
 * {
-    font-family: JetBrains Mono, Symbols Nerd Font, monospace;
+    font-family: Gitlab Mono, Symbols Nerd Font, monospace;
     font-size: 12px;
     font-weight: bold;
 }

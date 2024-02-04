@@ -20,7 +20,7 @@ set $term foot & disown
 # on the original workspace that the command was run on.
 set $menu wofi --show drun
 set $editor emacsclient -nc -a ''
-set $browser thorium-browser
+set $browser floorp
 
 gaps inner 16
 gaps outer 8
@@ -28,15 +28,14 @@ gaps outer 8
 default_border none
 default_floating_border none
 
-font pango:JetBrains Mono 0
+font pango:Gitlab Mono 0
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $HOME/Pictures/Wallpaper fill
 
-for_window [app_id="Thorium-browser"] move container to workspace number 1
-for_window [app_id="Thorium-browser"] border none
+for_window [class="floorp"] move container to workspace number 1
 for_window [class="Emacs"] move container to workspace number 2
 for_window [app_id="foot"] move container to workspace number 3
 for_window [app_id="org.telegram.desktop"] move container to workspace number 4
@@ -87,7 +86,7 @@ input * {
     # Start a terminal
     bindsym $mod+Return exec $term && swaymsg workspace number 3
     bindsym $mod+e exec $editor && swaymsg '[class="Emacs"]' focus
-    bindsym $mod+b exec $browser && swaymsg '[app_id="LibreWolf"]' focus
+    bindsym $mod+b exec $browser && swaymsg '[class="floorp"]' focus
 
     # Kill focused window
     bindsym $mod+q kill
