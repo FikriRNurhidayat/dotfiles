@@ -1,7 +1,7 @@
-gtk-theme-name="oomox-xresources"
-gtk-icon-theme-name="oomox-xresources"
-gtk-font-name="Iosevka Etoile 10"
-gtk-cursor-theme-name="oomox-xresources"
+gtk-icon-theme-name=Catpuccin-Mocha-Red
+gtk-theme-name=Catpuccin-Mocha-Red
+gtk-font-name="Iosevka Aile 10"
+gtk-cursor-theme-name=Catpuccin-Mocha-Red
 gtk-cursor-theme-size=0
 gtk-button-images=0
 gtk-menu-images=0

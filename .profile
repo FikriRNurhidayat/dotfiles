@@ -1,2 +1,6 @@
-# source $HOME/.config/sh/setup
-# source $HOME/.config/sh/aliases
+#!/bin/sh
+
+. $HOME/.config/sh/setup
+source $HOME/.config/sh/aliases
+
+export PATH="$PATH:$HOME/.yarn/bin"

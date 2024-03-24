@@ -1,7 +1,8 @@
 @import ".config/wofi/colors.css";
 
 * {
-    font-family: Gitlab Mono;
+    font-family: Iosevka Extended;
+    font-size: 14px;
     font-weight: bold;    
 }
 
