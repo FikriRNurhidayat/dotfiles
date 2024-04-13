@@ -17,7 +17,7 @@ if [[ -f /usr/bin/grim ]]; then
       sh -c "grim - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
       rectangle)
-          sh -c "slurp | grim -g - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
+          grim -g "$(slurp)" - | tee $f | wl-copy && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
       window)
           GEOMETRY=$(swaymsg -t get_tree | jq -r '.. | select(.nodes? // empty) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)

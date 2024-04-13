@@ -52,6 +52,10 @@ window#waybar {
     color: @red;
 }
 
+#clock.week {
+    padding-right: 2rem;
+}
+
 #tray {
     padding-right: 2rem;
 }

@@ -20,3 +20,6 @@ alias conf-desktop="$EDITOR $HOME/.local/share/applications"
 # Directory configuration
 alias conf-dunst="cd $DOTFILES/.config/dunst && $EDITOR dunstrc"
 alias conf-gtk-3.0="cd $DOTFILES/.config/gtk-3.0 && $EDITOR settings.ini"
+
+# MHTools
+alias mhtools="java -jar $HOME/Downloads/mhtools.jar"
