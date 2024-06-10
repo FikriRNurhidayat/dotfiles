@@ -4,8 +4,6 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-exec_always --no-startup-id systemd --user import-environment
-
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -22,7 +20,6 @@ set $term foot & disown
 # on the original workspace that the command was run on.
 set $menu wofi --show drun
 set $editor emacsclient -nc -a ''
-set $browser thorium-browser
 
 gaps inner 16
 gaps outer 8
@@ -37,7 +34,6 @@ font pango:Iosevka Extended 1
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $HOME/Pictures/Wallpaper fill
 
-for_window [class="Thorium-browser"] move container to workspace number 1
 for_window [class="Emacs"] move container to workspace number 2
 for_window [app_id="foot"] move container to workspace number 3
 for_window [app_id="org.telegram.desktop"] move container to workspace number 4
@@ -89,7 +85,6 @@ input * {
     # Start a terminal
     bindsym $mod+Return exec $term && swaymsg workspace number 3
     bindsym $mod+e exec $editor && swaymsg '[class="Emacs"]' focus
-    bindsym $mod+b exec $browser && swaymsg '[class="Thorium-browser"]' focus
 
     # Kill focused window
     bindsym $mod+q kill

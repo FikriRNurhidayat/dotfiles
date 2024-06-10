@@ -4,6 +4,7 @@
 *#
 
 !.local/share/desktop-scripts/
+!.local/share/scripts/
 .local/share/*
 .config/gresemacs/
 .config/bashtop

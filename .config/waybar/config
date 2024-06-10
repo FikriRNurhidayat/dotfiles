@@ -3,9 +3,25 @@
     "spacing": 32,
     "margin-left": 0,
     "margin-right": 0,
-    "modules-left": ["sway/workspaces"],
+    "modules-left": ["sway/workspaces", "hyprland/workspaces"],
     "modules-center": ["clock#time"],
     "modules-right": ["battery", "network", "clock#date", "clock#week", "tray"],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "火",
+            "2": "水",
+            "3": "氣",
+            "4": "塵",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            "Urgent": "死"
+        }
+    },
     "sway/workspaces": {
         "format": "{icon}",
         "format-icons": {
