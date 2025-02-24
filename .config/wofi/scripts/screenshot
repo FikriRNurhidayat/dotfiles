@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-options="screen\nrectangle\nwindow"
+options="Screen\nRectangle\nWindow"
 
 chosen="$(echo -e "$options" | wofi --dmenu)"
 
@@ -12,14 +12,14 @@ if [[ -f /usr/bin/grim ]]; then
   f="$screenshotdir/$filename"
 
   case $chosen in
-      screen)
+      Screen)
       sleep 1
       sh -c "grim - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
-      rectangle)
+      Rectangle)
           grim -g "$(slurp)" - | tee $f | wl-copy && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;
-      window)
+      Window)
           GEOMETRY=$(swaymsg -t get_tree | jq -r '.. | select(.nodes? // empty) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
           sh -c "grim -g '$GEOMETRY' - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
           ;;

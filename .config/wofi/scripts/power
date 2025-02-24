@@ -1,17 +1,17 @@
 #!/bin/sh
 
-options="shutdown\nrestart\nsuspend"
+options="Shutdown\nRestart\nSuspend"
 
 choosen=$(echo -e "$options" | wofi --dmenu)
 
 case $choosen in
-    shutdown)
+    Shutdown)
         shutdown now
         ;;
-    restart)
+    Restart)
         reboot
         ;;
-    suspend)
+    Suspend)
         systemctl suspend
         ;;
 esac

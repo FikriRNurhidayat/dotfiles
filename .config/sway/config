@@ -14,30 +14,43 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot & disown
+set $term ghostty & disown
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi --show drun
+set $menu $HOME/.config/wofi/scripts/launcher
 set $editor emacsclient -nc -a ''
 
-gaps inner 16
+gaps inner 8
 gaps outer 8
 
-default_border none
-default_floating_border none
+font pango:JetBrains Mono 1
+default_border pixel 0
+default_floating_border pixel 0
 
-font pango:Iosevka Extended 1
+blur enable
+blur_xray disable
+blur_passes 2
+blur_radius 5
+shadows disable
+shadow_blur_radius 0 
+corner_radius 8
+
+layer_effects "rofi" blur enable; blur_ignore_transparent enable;
+layer_effects "wofi" blur enable; blur_ignore_transparent enable;
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg $HOME/Pictures/Wallpaper fill
+# exec_always mpvpaper --mpv-options "--loop" "*" $HOME/Pictures/Wallpaper.mp4
 
+for_window [class=".*"] floating enable
 for_window [class="Emacs"] move container to workspace number 2
-for_window [app_id="foot"] move container to workspace number 3
+for_window [app_id="org.gnome.Nautilus"] floating enable
+for_window [app_id="com.mitchellh.ghostty"] move container to workspace number 3
+for_window [app_id="com.mitchellh.ghostty"] floating disable
 for_window [app_id="org.telegram.desktop"] move container to workspace number 4
-for_window [app_id="org.telegram.desktop"] fullscreen
 
 #
 # Example configuration:
@@ -111,6 +124,7 @@ input * {
     bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.local/share/desktop-scripts/backlightctl up
     bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.local/share/desktop-scripts/backlightctl down
     bindsym Print exec --no-startup-id $HOME/.config/wofi/scripts/screenshot
+    bindsym $mod+p exec --no-startup-id $HOME/.config/wofi/scripts/screenshot
     bindsym $mod+escape exec --no-startup-id $HOME/.config/wofi/scripts/power
 #
 # Moving around:

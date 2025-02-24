@@ -1,8 +1,8 @@
 [global]
     monitor = 0
     follow = none
-    width = 300
-    height = 300
+    width = 384
+    height = 128
     origin = top-right
     offset = 10x50
     scale = 0
@@ -22,11 +22,11 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 1
-    frame_color = "#1e1e2e"
+    frame_color = "#292929"
     gap_size = 0
     separator_color = frame
     sort = yes
-    font = Gitlab Sans 8
+    font = IBM Plex Sans 10
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -39,11 +39,10 @@
     hide_duplicate_count = false
     show_indicators = yes
     enable_recursive_icon_lookup = true
-    icon_theme = Papirus-Dark
+    icon_theme = Tela-circle-grey-dark
     icon_position = off
-    min_icon_size = 32
-    max_icon_size = 128
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    min_icon_size = 16
+    max_icon_size = 64
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/dmenu -p dunst:
@@ -61,14 +60,14 @@
 [experimental]
     per_monitor_dpi = false
 [urgency_low]
-    background = "#1e1e2e"
-    foreground = "#6c7086"
+    background = "#292929"
+    foreground = "#ffffff"
     timeout = 10
 [urgency_normal]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
+    background = "#292929"
+    foreground = "#ffffff"
     timeout = 10
 [urgency_critical]
-    background = "#1e1e2e"
-    foreground = "#f38ba8"
+    background = "#292929"
+    foreground = "#ffffff"
     timeout = 0

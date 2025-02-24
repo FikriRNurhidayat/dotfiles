@@ -1,65 +1,52 @@
-@import ".config/wofi/colors.css";
-
 * {
-    font-family: Iosevka Extended;
-    font-size: 14px;
-    font-weight: bold;    
-}
-
-*:focus {
-    outline: none;
+  font-family: JetBrains Sans, sans-serif;
+  font-size: 10pt;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 #window {
-    background: @base;
-    margin: auto;
-    padding: 1rem;
+  min-height: 100%;
 }
 
 #input {
-    background-color: @crust;
-    color: @text;
-    border-radius: 0;
-    padding: 1rem;
-    outline: none !important;
-    outline-width: 0;
+  background: rgba(40, 40, 40, 0.69);
+  padding: 1rem;
+  outline: none !important;
+  font-weight: 500;
 }
 
 #input:focus {
-    border: 1pt solid @text;
-    color: @text;
-    border-radius: 0;
-    outline: none !important;
-    outline-width: 0;
+  border: none;
+  outline: none !important;
 }
 
 
 #img {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 #entry {
-    padding: 1rem;
-    color: @text;
-    background: none;
+  background: rgba(40, 40, 40, 0.69);
+  color: rgba(235, 219, 178, 0.1);
+  padding: 1rem;
+  outline: none !important;
+  box-shadow: none;
 }
 
-#outer-box {
-    border-radius: 1rem;
-}
+#inner-box,
+#outer-box {}
 
 #entry:selected {
-    color: @red;
-    border: none !important;
+  border: none !important;
+  outline: none !important;
+  color: rgba(235, 219, 178, 0.4);
 }
 
-#text {
-    color: @text;
-    padding: 1rem;
-}
-
+#text,
 #text:selected {
-    color: @red;
-    border: none !important;
-    border-radius: 1rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
 }

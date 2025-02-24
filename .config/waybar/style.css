@@ -1,60 +1,123 @@
-@import "colors.css";
-
 * {
-    font-family: IBM Plex Mono, Symbols Nerd Font, monospace;
-    font-size: 10pt;
-    font-weight: bold;
+  font-family: JetBrains Sans, Symbols Nerd Font, monospace;
+  font-size: 10pt;
+}
+
+button {
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
 }
 
 window#waybar {
-    background-color: transparent;
-    color: @text;
+  background-color: transparent;
+  color: #ebdbb2;
+}
+
+#workspaces {
+  font-size: 12pt;
+  font-weight: bold;
+  background: transparent;
+  border-radius: 8pt;
+  background-color: transparent;
 }
 
 #workspaces button {
-    padding: 0 1rem;
-    background-color: transparent;
-    color: @overlay0;
+  background-color: transparent;
+  border-radius: 8pt;
+  color: #665c54;
 }
 
 #workspaces button:hover {
-    color: @text;
+  color: #ebdbb2;
+  background-color: transparent;
+  box-shadow: none;
 }
 
-#workspaces button.focused, #workspaces button.active  {
-    color: @text;
+#workspaces button.focused,
+#workspaces button.active {
+  color: inherit;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 #workspaces button.urgent {
-    color: @red;
+  color: inherit;
+  background-color: transparent;
+  box-shadow: none;
 }
 
 @keyframes blink {
-    to {
-        color: @red;
-    }
+  to {
+    color: #ebdbb2;
+  }
 }
 
 #battery {
-    padding: 0 4px;
+  padding: 0 4px;
 }
 
 #battery.critical:not(.charging) {
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 #network.disconnected {
-    color: @red;
+  color: #ebdbb2;
+}
+
+#network {
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem;
+}
+
+/*
+#clock.time,
+#clock.date,
+#clock.week {
+  font-size: 14pt;
+  text-shadow: black 2px 2px;
+}
+*/
+
+#clock.time {
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem 2rem;
+}
+
+#clock.date {
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem 2rem;
 }
 
 #clock.week {
-    padding-right: 2rem;
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem 2rem;
 }
 
 #tray {
-    padding-right: 2rem;
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem 2rem;
+}
+
+#custom-arch-icon {
+  font-weight: normal;
+  background: transparent;
+  border-radius: 8pt;
+  padding: 1rem 1.5rem;
 }

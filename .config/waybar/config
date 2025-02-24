@@ -1,41 +1,51 @@
 {
-    "height": 48,
+    "height": 32,
     "spacing": 32,
-    "margin-left": 0,
-    "margin-right": 0,
-    "modules-left": ["sway/workspaces", "hyprland/workspaces"],
+    "margin-top": 16,
+    "margin-left": 16,
+    "margin-right": 16,
+    "margin-bottom": 16,
+    "modules-left": ["custom/arch-icon", "sway/workspaces"],
     "modules-center": ["clock#time"],
     "modules-right": ["battery", "network", "clock#date", "clock#week", "tray"],
     "hyprland/workspaces": {
+        "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "火",
-            "2": "水",
-            "3": "氣",
-            "4": "塵",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十",
-            "Urgent": "死"
+            "1": "ꦲ",
+            "2": "ꦤ",
+            "3": "ꦕ",
+            "4": "ꦫ",
+            "5": "ꦏ",
+            "6": "ꦢ",
+            "7": "ꦠ",
+            "8": "ꦱ",
+            "9": "ꦮ",
+            "10": "ꦭ" 
         }
     },
     "sway/workspaces": {
+        "persistant_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        },
+        "disable-scroll": true,
+        "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "1": "火",
-            "2": "水",
-            "3": "氣",
-            "4": "塵",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十",
-            "Urgent": "死"
+            "1": "ꦲ",
+            "2": "ꦤ",
+            "3": "ꦕ",
+            "4": "ꦫ",
+            "5": "ꦏ",
+            "6": "ꦢ",
+            "7": "ꦠ",
+            "8": "ꦱ",
+            "9": "ꦮ",
+            "10": "ꦭ" 
         }
     },
     "tray": {
@@ -67,6 +77,9 @@
         "format-linked": "󰅟",
         "format-disconnected": "󰅤",
         "format-alt": "{essid} 󰅟"
+    },
+    "custom/arch-icon": {
+      "format": ""
     }
 }
 
