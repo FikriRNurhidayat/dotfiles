@@ -1,0 +1,26 @@
+#!/bin/sh
+
+
+options="screen\nrectangle\nwindow"
+
+chosen="$(echo -e "$options" | dmenu -p " " -vp 16 -c -l 3)"
+
+if [[ -f /usr/bin/maim ]]; then
+  filename=$(date '+%F-%H-%M-%S').png
+  screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
+  mkdir -p $screenshotdir
+  f="$screenshotdir/$filename"
+
+  case $chosen in
+      screen)
+      sleep 1
+      maim -u "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
+          ;;
+      rectangle)
+      maim -s "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
+          ;;
+      window)
+      maim -u -i $(xdotool getactivewindow) "$f"; cat $f | xclip -sel clipboard -t image/png; dunstify --raw_icon="$f" "Screenshot taken!" "$filename"
+          ;;
+  esac
+fi

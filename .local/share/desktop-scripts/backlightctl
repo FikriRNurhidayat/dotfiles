@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# $this up
+# $this down
+
+function get_backlight {
+  echo "$(( $(brightnessctl get) * 100 / $(brightnessctl max) ))"
+}
+
+function send_notification {
+  backlight=$(get_backlight)
+  echo $backlight
+  dunstify -t 1000 -r 2593 -h int:value:"$backlight" "Brightness"
+}
+
+case "$1" in
+  up)
+    brightnessctl set +5%
+    send_notification
+    ;;
+  down)
+    brightnessctl set 5%-
+    send_notification
+    ;;
+esac

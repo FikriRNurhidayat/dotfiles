@@ -1,0 +1,7 @@
+#!/bin/sh
+
+alias edit="$EDITOR"
+alias e="$EDITOR"
+alias conf-dotfiles="cd $DOTFILES && $EDITOR"
+alias ls="ls --color"
+alias yank="xclip -sel clipboard"
