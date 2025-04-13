@@ -1,0 +1,25 @@
+#!/bin/sh
+
+alias dmenu="rofi -dmenu"
+network=$(nmcli dev wifi | tail -n +2 | awk '{ $1=""; print substr($0,2) }' | dmenu -p "Select Wi-Fi network")
+
+if [ -n "$network" ]; then
+  requires_password=$(nmcli dev wifi list | grep "$network" | awk '{print $3}')
+  saved_network=$(nmcli connection show --active | grep "$network")
+
+  if [ -z "$saved_network" ] && { [ "$requires_password" = "WPA2" ] || [ "$requires_password" = "WPA" ]; }; then
+    password=$(dmenu -p "Enter password for $network")
+  fi
+
+  if [ -n "$password" ]; then
+    nmcli dev wifi connect "$network" password "$password"
+  else
+    nmcli dev wifi connect "$network"
+  fi
+
+  if [ $? -eq 0 ]; then
+    notify-send "Wi-Fi" "Connected to $network successfully."
+  else
+    notify-send "Wi-Fi" "Failed to connect to $network."
+  fi
+fi

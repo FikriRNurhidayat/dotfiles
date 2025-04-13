@@ -1,0 +1,27 @@
+#!/bin/sh
+
+
+options="Screen\nRectangle\nWindow"
+
+chosen="$(echo -e "$options" | rofi -dmenu -p "")"
+
+if [[ -f /usr/bin/grim ]]; then
+  filename=$(date '+%F-%H-%M-%S').png
+  screenshotdir="$(xdg-user-dir PICTURES)/Screenshots"
+  mkdir -p $screenshotdir
+  f="$screenshotdir/$filename"
+
+  case $chosen in
+      Screen)
+      sleep 1
+      sh -c "grim - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
+          ;;
+      Rectangle)
+          grim -g "$(slurp)" - | tee $f | wl-copy && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
+          ;;
+      Window)
+          GEOMETRY=$(swaymsg -t get_tree | jq -r '.. | select(.nodes? // empty) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+          sh -c "grim -g '$GEOMETRY' - | tee $f | wl-copy" && dunstify --raw_icon="$f" "Screenshot captured!" "$filename"
+          ;;
+  esac
+fi

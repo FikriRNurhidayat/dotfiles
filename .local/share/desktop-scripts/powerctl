@@ -1,0 +1,17 @@
+#!/bin/sh
+
+options="shutdown\nrestart\nsuspend"
+
+choosen="$(echo -e "$options" | rofi -dmenu -p "")"
+
+case $choosen in
+    shutdown)
+        shutdown now
+        ;;
+    restart)
+        reboot
+        ;;
+    suspend)
+        systemctl suspend
+        ;;
+esac

@@ -1,0 +1,55 @@
+// -*- mode: jsonc -*-
+{
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-right": [
+    "tray",
+    "network",
+    "clock#date",
+    "clock#time",
+    "clock#week",
+  ],
+  "sway/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": true,
+    "disable-click": true,
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+    },
+    "format": "{icon}",
+    "format-icons": {
+      "1": "火", // Fire (Hi)
+      "2": "木", // Wood (Ki)
+      "3": "土", // Earth (Tsuchi)
+      "4": "金", // Metal (Kin)
+      "5": "水", // Water (Mizu)
+      "6": "氷", // Ice (Kōri)
+      "7": "雷", // Thunder (Kaminari)
+      "8": "光", // Light (Hikari)
+      "9": "暗", // Darkness (Yami)
+      "10": "風", // Wind (Kaze)
+    },
+  },
+  "tray": {
+    "icon-size": 12,
+    "spacing": 32,
+  },
+  "clock#date": {
+    "format": "{:%d %B %Y}",
+  },
+  "clock#time": {
+    "format": "{:%H:%M}",
+  },
+  "clock#week": {
+    "format": "Week {:%W}",
+  },
+  "network": {
+    "format-wifi": "󰅟",
+    "format-ethernet": "󰅟",
+    "format-linked": "󰅟",
+    "format-disconnected": "󰅤",
+    "format-alt": "󰅟",
+  },
+}
