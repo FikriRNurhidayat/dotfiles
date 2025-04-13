@@ -7,7 +7,7 @@ Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 
 ! dmenu
-dmenu.font: Iosevka Etoile:style=bold:hinting=true:antialias=true:size=11
+dmenu.font: Iosevka Fixed Extended:style=bold:hinting=true:antialias=true:size=11
 dmenu.center: 1
 dmenu.vertpad: 16
 
@@ -16,4 +16,4 @@ st.font: Iosevka Term Extended:style=bold:hinting=true:antialias=true:size=11
 st.borderpx: 24
 
 ! sent
-sent.font: Iosevka Aile:style=bold:hinting=true:antialias:true, Symbols Nerd Font:antialias=true:hinting=true
+sent.font: Iosevka Extended:style=bold:hinting=true:antialias:true, Symbols Nerd Font:antialias=true:hinting=true
