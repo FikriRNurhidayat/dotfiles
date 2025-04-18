@@ -1,0 +1,35 @@
+#!/bin/bash
+
+get_volume() {
+    amixer get Capture | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
+}
+
+is_mute() {
+    amixer get Capture | grep '%' | grep -o '\[off\]' | grep -q off
+}
+
+send_notification() {
+    volume=$(get_volume)
+    dunstify -h int:value:$volume -t 1000 -r 2593 "Microphone"
+}
+
+case "$1" in
+    up)
+        amixer set Capture cap > /dev/null
+        amixer sset Capture 5%+ > /dev/null
+        send_notification
+        ;;
+    down)
+        amixer set Capture cap > /dev/null
+        amixer sset Capture 5%- > /dev/null
+        send_notification
+        ;;
+    mute)
+        amixer set Capture toggle > /dev/null
+        if is_mute; then
+            dunstify -t 1000 -r 2593 "Muted"
+        else
+            send_notification
+        fi
+        ;;
+esac

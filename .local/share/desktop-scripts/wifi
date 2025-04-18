@@ -1,0 +1,42 @@
+#!/bin/sh
+
+networks=$(nmcli -f ssid,rate,security -t dev wifi | tail -n +1 | awk -F: '$1 != ""' | sort -t: -k2,2nr)
+network=$(echo "$networks" | awk -F: '{print $1}' | dmenu -l 5 -i -p "Wi-Fi")
+
+if [ -n "$network" ]; then
+  action=$(echo -e "Connect\nForget" | dmenu -l 5 -i -p "Action")
+
+  case "$action" in
+    "Connect")
+      requires_password=$(echo "$networks" | grep "$network" | awk -F: '{print $3}')
+      saved=$(nmcli -t -f name connection show --active | grep -x "$network")
+
+      if [ -z "$saved" ] && [ -n "$requires_password" ]; then
+        password=$(dmenu -p "Password" -P)
+      fi
+
+      if [ -n "$password" ]; then
+        nmcli dev wifi connect "$network" password "$password" --ask
+      else
+        nmcli dev wifi connect "$network"
+      fi
+
+      if [ $? -eq 0 ]; then
+        notify-send "Wi-Fi" "Connected to $network successfully."
+      else
+        notify-send "Wi-Fi" "Failed to connect to $network."
+      fi
+      ;;
+    "Forget")
+      nmcli connection delete "$network"
+      if [ $? -eq 0 ]; then
+        notify-send "Wi-Fi" "$network forgotten."
+      else
+        notify-send "Wi-Fi" "Failed to forget $network."
+      fi
+      ;;
+    *)
+      echo "No action selected."
+      ;;
+  esac
+fi
