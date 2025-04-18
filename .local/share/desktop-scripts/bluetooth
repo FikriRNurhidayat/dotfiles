@@ -20,15 +20,27 @@ if [ -n "$device" ]; then
   case "$action" in
     "Pair")
       bluetoothctl pair "$device_id"
-      notify-send "Bluetooth" "$device paired successfully."
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device paired successfully."
+      else
+        notify-send "Bluetooth" "Failed to pair $device device."
+      fi
       ;;
     "Trust")
       bluetoothctl trust "$device_id"
-      notify-send "Bluetooth" "$device trusted successfully."
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device trusted successfully."
+      else
+        notify-send "Bluetooth" "Failed to trust $device device."
+      fi
       ;;
     "Connect")
       bluetoothctl connect "$device_id"
-      notify-send "Bluetooth" "$device connected successfully."
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device connected successfully."
+      else
+        notify-send "Bluetooth" "Failed to connect $device device."
+      fi
       ;;
     *)
       echo "No action selected."
