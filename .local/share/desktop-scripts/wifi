@@ -1,25 +1,43 @@
 #!/bin/sh
 
 alias dmenu="rofi -dmenu"
-network=$(nmcli dev wifi | tail -n +2 | awk '{ $1=""; print substr($0,2) }' | dmenu -p "Select Wi-Fi network")
+networks=$(nmcli -f ssid,rate,security -t dev wifi | tail -n +1 | awk -F: '$1 != ""' | sort -t: -k2,2nr)
+network=$(echo "$networks" | awk -F: '{print $1}' | dmenu -l 5 -i -p "Wi-Fi")
 
 if [ -n "$network" ]; then
-  requires_password=$(nmcli dev wifi list | grep "$network" | awk '{print $3}')
-  saved_network=$(nmcli connection show --active | grep "$network")
+  action=$(echo -e "Connect\nForget" | dmenu -l 5 -i -p "Action")
 
-  if [ -z "$saved_network" ] && { [ "$requires_password" = "WPA2" ] || [ "$requires_password" = "WPA" ]; }; then
-    password=$(dmenu -p "Enter password for $network")
-  fi
+  case "$action" in
+    "Connect")
+      requires_password=$(echo "$networks" | grep "$network" | awk -F: '{print $3}')
+      saved=$(nmcli -t -f name connection show --active | grep -x "$network")
 
-  if [ -n "$password" ]; then
-    nmcli dev wifi connect "$network" password "$password"
-  else
-    nmcli dev wifi connect "$network"
-  fi
+      if [ -z "$saved" ] && [ -n "$requires_password" ]; then
+        password=$(dmenu -p "Password" -P)
+      fi
 
-  if [ $? -eq 0 ]; then
-    notify-send "Wi-Fi" "Connected to $network successfully."
-  else
-    notify-send "Wi-Fi" "Failed to connect to $network."
-  fi
+      if [ -n "$password" ]; then
+        nmcli dev wifi connect "$network" password "$password" --ask
+      else
+        nmcli dev wifi connect "$network"
+      fi
+
+      if [ $? -eq 0 ]; then
+        notify-send "Wi-Fi" "Connected to $network successfully."
+      else
+        notify-send "Wi-Fi" "Failed to connect to $network."
+      fi
+      ;;
+    "Forget")
+      nmcli connection delete "$network"
+      if [ $? -eq 0 ]; then
+        notify-send "Wi-Fi" "$network forgotten."
+      else
+        notify-send "Wi-Fi" "Failed to forget $network."
+      fi
+      ;;
+    *)
+      echo "No action selected."
+      ;;
+  esac
 fi

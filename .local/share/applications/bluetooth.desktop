@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Bluetooth
+Exec=/home/chekoy/.local/share/desktop-scripts/bluetooth
+Type=Application
+Categories=Desktop;
+Terminal=false

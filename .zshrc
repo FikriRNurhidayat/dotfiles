@@ -26,3 +26,4 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 PROMPT='› '
 
 alias ls="ls --color"
+alias grep="grep --color=always"

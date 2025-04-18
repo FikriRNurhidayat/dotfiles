@@ -1,18 +1,21 @@
 #!/bin/sh
 
+alias dmenu="rofi -dmenu"
 powered=$(bluetoothctl show | grep "Powered:" | awk '{ print $2 }')
 
 if [ "$powered" != "yes" ]; then
-  choice=$(printf "No\nYes" | rofi -dmenu -p "Bluetooth")
+  choice=$(printf "No\nYes" | dmenu -l 5 -i -p "Bluetooth")
   [ "$choice" = "Yes" ] && bluetoothctl power on && dunstify "Bluetooth is ON"
 fi
 
-device=$(bluetoothctl devices | sed 's/^Device [^ ]* //g' | rofi -dmenu -p "Device")
+bluetoothctl scan on
+
+device=$(bluetoothctl devices | sed 's/^Device [^ ]* //g' | dmenu -l 5 -i -p "Device")
 
 if [ -n "$device" ]; then
   device_id=$(bluetoothctl devices | grep "$device" | awk '{print $2}')
   
-  action=$(echo -e "Pair\nTrust\nConnect" | rofi -dmenu -p "Action")
+  action=$(echo -e "Pair\nTrust\nConnect" | dmenu -l 5 -i -p "Action")
   
   case "$action" in
     "Pair")
