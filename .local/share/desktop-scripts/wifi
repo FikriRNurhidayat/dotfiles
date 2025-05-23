@@ -1,42 +1,78 @@
 #!/bin/sh
 
-networks=$(nmcli -f ssid,rate,security -t dev wifi | tail -n +1 | awk -F: '$1 != ""' | sort -t: -k2,2nr)
-network=$(echo "$networks" | awk -F: '{print $1}' | dmenu -l 5 -i -p "Wi-Fi")
+function get_networks {
+  networks=$(nmcli -f ssid,rate,security -t dev wifi | tail -n +1 | awk -F: '$1 != ""' | sort -t: -k2,2nr)
+  echo "$networks" | awk -F: '{print $1}'
+}
 
-if [ -n "$network" ]; then
-  action=$(echo -e "Connect\nForget" | dmenu -l 5 -i -p "Action")
+function get_network {
+  get_networks | dmenu -l 5 -i -p "Wi-Fi"
+}
 
-  case "$action" in
-    "Connect")
-      requires_password=$(echo "$networks" | grep "$network" | awk -F: '{print $3}')
-      saved=$(nmcli -t -f name connection show --active | grep -x "$network")
+function get_saved_networks {
+  networks=$(nmcli -t -f NAME,TYPE connection show | awk -F: '$2 == "802-11-wireless" { print $1 }')
+  echo "$networks" | awk -F: '{print $1}'
+}
 
-      if [ -z "$saved" ] && [ -n "$requires_password" ]; then
-        password=$(dmenu -p "Password" -P)
-      fi
+function get_saved_network {
+  get_saved_networks | dmenu -l 5 -i -p "Wi-Fi"
+}
 
-      if [ -n "$password" ]; then
-        nmcli dev wifi connect "$network" password "$password" --ask
-      else
-        nmcli dev wifi connect "$network"
-      fi
+function forget {
+  network=$(get_saved_network)
+  if [ -n "$network" ]; then
+    nmcli connection delete "$network"
+    if [ $? -eq 0 ]; then
+      notify-send "Wi-Fi" "Connection $network forgotten."
+    else
+      notify-send "Wi-Fi" "Forget $network connection failed."
+    fi
+  fi
+}
 
-      if [ $? -eq 0 ]; then
-        notify-send "Wi-Fi" "Connected to $network successfully."
-      else
-        notify-send "Wi-Fi" "Failed to connect to $network."
-      fi
-      ;;
-    "Forget")
-      nmcli connection delete "$network"
-      if [ $? -eq 0 ]; then
-        notify-send "Wi-Fi" "$network forgotten."
-      else
-        notify-send "Wi-Fi" "Failed to forget $network."
-      fi
-      ;;
-    *)
-      echo "No action selected."
-      ;;
-  esac
+function connect {
+  network=$(get_network)
+  if [ -z "$network" ]; then
+    exit
+  fi
+
+  saved_network=$(get_saved_networks | grep -x "$network")
+
+  echo "$saved_network"
+
+  if [ -z "$saved_network" ]; then
+    password=$(dmenu -P -p "Password")
+    nmcli device wifi connect "$network" password "$password"
+    if [ $? -eq 0 ]; then
+      notify-send "Wi-Fi" "$network connected."
+    else
+      nmcli connection delete "$network" || 0
+      notify-send "Wi-Fi" "$network connection failed."
+    fi
+  else
+    nmcli device wifi connect "$network"
+    if [ $? -eq 0 ]; then
+      notify-send "Wi-Fi" "$network connected."
+    else
+      notify-send "Wi-Fi" "$network connection failed."
+    fi
+  fi
+}
+
+action=$(echo -e "Connect\nForget" | dmenu -l 5 -i -p "Wi-Fi")
+
+if [ -z "$action" ]; then
+  exit
 fi
+
+case "$action" in
+  "Connect")
+    connect
+    ;;
+  "Forget")
+    forget
+    ;;
+  *)
+    echo "No action selected."
+    ;;
+esac

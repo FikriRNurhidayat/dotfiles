@@ -1,5 +1,14 @@
 #!/bin/sh
 
+function get_device () {
+  device=$(bluetoothctl devices | sed 's/^Device [^ ]* //g' | dmenu -l 5 -i -p "Device")
+  if [ -n "$device" ]; then
+    echo "$(bluetoothctl devices | grep "$device" | awk '{print $2}')"
+  else
+    echo ""
+  fi
+}
+
 powered=$(bluetoothctl show | grep "Powered:" | awk '{ print $2 }')
 
 if [ "$powered" != "yes" ]; then
@@ -7,30 +16,55 @@ if [ "$powered" != "yes" ]; then
   [ "$choice" = "Yes" ] && bluetoothctl power on && dunstify "Bluetooth is ON"
 fi
 
-bluetoothctl scan on
+action=$(echo -e "Pair\nTrust\nConnect\nScan" | dmenu -l 5 -i -p "Bluetooth")
 
-device=$(bluetoothctl devices | sed 's/^Device [^ ]* //g' | dmenu -l 5 -i -p "Device")
-
-if [ -n "$device" ]; then
-  device_id=$(bluetoothctl devices | grep "$device" | awk '{print $2}')
-  
-  action=$(echo -e "Pair\nTrust\nConnect" | dmenu -l 5 -i -p "Action")
-  
-  case "$action" in
-    "Pair")
-      bluetoothctl pair "$device_id"
-      notify-send "Bluetooth" "$device paired successfully."
-      ;;
-    "Trust")
-      bluetoothctl trust "$device_id"
-      notify-send "Bluetooth" "$device trusted successfully."
-      ;;
-    "Connect")
-      bluetoothctl connect "$device_id"
-      notify-send "Bluetooth" "$device connected successfully."
-      ;;
-    *)
-      echo "No action selected."
-      ;;
-  esac
+if [ -z "$action" ]; then
+  exit
 fi
+
+case "$action" in
+  "Pair")
+    device=$(get_device)
+    bluetoothctl pair $device
+    if [ $? -eq 0 ]; then
+      notify-send "Bluetooth" "Device $device paired."
+    else
+      notify-send "Bluetooth" "Pair $device failed."
+    fi
+    ;;
+  "Trust")
+    device=$(get_device)
+    bluetoothctl trust $device
+    if [ $? -eq 0 ]; then
+      notify-send "Bluetooth" "Device $device trusted."
+    else
+      notify-send "Bluetooth" "Trust $device failed."
+    fi
+    ;;
+  "Remove")
+    device=$(get_device)
+    bluetoothctl remove $device
+    if [ $? -eq 0 ]; then
+      notify-send "Bluetooth" "Device $device removed."
+    else
+      notify-send "Bluetooth" "Remove $device device failed."
+    fi
+    ;;
+  "Connect")
+    device=$(get_device)
+    bluetoothctl connect $device
+    if [ $? -eq 0 ]; then
+      notify-send "Bluetooth" "Device $device connected."
+    else
+      notify-send "Bluetooth" "Failed $device connection."
+    fi
+    ;;
+  "Scan")
+    bluetoothctl scan on
+    sleep 3
+    exec "$0" "$@"
+    ;;
+  *)
+    echo "No action selected."
+    ;;
+esac

@@ -6,6 +6,9 @@ Xft.hintstyle:	hintslight
 Xft.rgba:	rgb
 Xft.lcdfilter:	lcddefault
 
+! dwm
+dwm.font: Iosevka Etoile:style=bold:hinting=true:antialias=true:size=11
+
 ! dmenu
 dmenu.font: Iosevka Fixed Extended:style=bold:hinting=true:antialias=true:size=11
 dmenu.center: 1
@@ -17,3 +20,5 @@ st.borderpx: 24
 
 ! sent
 sent.font: Iosevka Extended:style=bold:hinting=true:antialias:true, Symbols Nerd Font:antialias=true:hinting=true
+
+Xcursor.theme: "catppuccin-mocha-green-standard+default"
