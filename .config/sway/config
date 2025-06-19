@@ -8,7 +8,8 @@ set $menu $HOME/.local/share/desktop-scripts/launcher
 default_border none
 default_floating_border none
 output * bg $HOME/.wallpaper fill
-font pango:JetBrains Mono 11
+output eDP-1 mode 1920x1080@60Hz
+font pango:Iosevka Etoile Extended 11
 input * {
   repeat_rate 75
   repeat_delay 250
@@ -128,3 +129,7 @@ client.unfocused         $overlay0 $crust $text  $rosewater $overlay0
 client.urgent            $peach    $crust $peach $overlay0  $peach
 client.placeholder       $overlay0 $crust $text  $overlay0  $overlay0
 client.background        $crust
+
+for_window [class="^steam$"] floating enable
+for_window [class="Steam"] floating enable
+for_window [app_id="thunar"] floating enable

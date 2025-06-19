@@ -2,11 +2,11 @@
 {
   "modules-left": ["sway/workspaces", "sway/mode"],
   "modules-right": [
-    "tray",
-    "network",
     "clock#date",
     "clock#time",
     "clock#week",
+    "network",
+    "tray",
   ],
   "sway/workspaces": {
     "all-outputs": true,

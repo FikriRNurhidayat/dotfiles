@@ -37,6 +37,7 @@
   <alias>
     <family>sans-serif</family>
     <prefer>
+      <family>Cantarell</family>
       <family>Iosevka Aile</family>
       <family>Sarasa Mono C</family>
       <family>Sarasa Mono J</family>

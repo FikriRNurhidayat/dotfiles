@@ -1,5 +1,5 @@
 configuration {
-  font: "Iosevka Etoile Bold 11";
+  font: "Iosevka Etoile 11";
   drun-display-format: "{name}";
 }
 
