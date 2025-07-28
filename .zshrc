@@ -31,3 +31,13 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 
 source /usr/share/nvm/init-nvm.sh
+
+for file in $HOME/.config/environment.d/*.conf; do
+    if [ -f "$file" ]; then
+	set -a
+	. "$file"
+	set +a
+    fi
+done
+
+source "$HOME/.config/sh/alias.sh"
