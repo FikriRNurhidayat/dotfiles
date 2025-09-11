@@ -1,5 +1,5 @@
 configuration {
-  font: "JetBrains Sans 11";
+  font: "JetBrains Mono Bold 11";
   drun-display-format: "{name}";
 }
 
