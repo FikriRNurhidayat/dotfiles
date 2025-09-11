@@ -1,0 +1,49 @@
+#!/bin/sh
+
+alias dmenu="rofi -dmenu"
+powered=$(bluetoothctl show | grep "Powered:" | awk '{ print $2 }')
+
+if [ "$powered" != "yes" ]; then
+  choice=$(printf "No\nYes" | dmenu -l 5 -i -p "Bluetooth")
+  [ "$choice" = "Yes" ] && bluetoothctl power on && dunstify "Bluetooth is ON"
+fi
+
+bluetoothctl scan on
+
+device=$(bluetoothctl devices | grep "^Device" | sed 's/^Device [^ ]* //g' | dmenu -l 5 -i -p "Device")
+
+if [ -n "$device" ]; then
+  device_id=$(bluetoothctl devices | grep "^Device" | grep "$device" | awk '{print $2}')
+  
+  action=$(echo -e "Pair\nTrust\nConnect" | dmenu -l 5 -i -p "Action")
+  
+  case "$action" in
+    "Pair")
+      bluetoothctl pair "$device_id"
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device paired successfully."
+      else
+        notify-send "Bluetooth" "Failed to pair $device device."
+      fi
+      ;;
+    "Trust")
+      bluetoothctl trust "$device_id"
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device trusted successfully."
+      else
+        notify-send "Bluetooth" "Failed to trust $device device."
+      fi
+      ;;
+    "Connect")
+      bluetoothctl connect "$device_id"
+      if [ $? -eq 0 ]; then
+        notify-send "Bluetooth" "$device connected successfully."
+      else
+        notify-send "Bluetooth" "Failed to connect $device device."
+      fi
+      ;;
+    *)
+      echo "No action selected."
+      ;;
+  esac
+fi
