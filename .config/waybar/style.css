@@ -1,9 +1,9 @@
 @import url("./color.css");
 
 * {
-  font-family: JetBrains Sans, Symbols Nerd Font Mono, Sarasa Mono, monospace;
+  font-family: JetBrains Mono, Symbols Nerd Font Mono, Sarasa Mono, monospace;
   font-size: 11pt;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 button {
@@ -19,11 +19,10 @@ button:hover {
 }
 
 window#waybar {
-  background-color: transparent;
+  background-color: @background;
   color: @text;
   transition-property: background-color;
   transition-duration: 0.5s;
-  border-radius: 8px;
 }
 
 #workspaces button {
@@ -44,6 +43,22 @@ window#waybar {
   box-shadow: none;
 }
 
+#workspaces button.visible {
+  color: @text;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+#workspaces button.active {
+  color: @highlight;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
 #workspaces button:hover {
   color: @text;
   background: none;
@@ -53,7 +68,7 @@ window#waybar {
   text-shadow: inherit;
 }
 
-#workspaces button.active {
+#workspaces button.focused {
   color: @highlight;
   background: none;
   border: none;

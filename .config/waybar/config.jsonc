@@ -1,8 +1,5 @@
 // -*- mode: jsonc -*-
 {
-  "margin-top": 16,
-  "margin-left": 32,
-  "margin-right": 32,
   "modules-left": ["hyprland/workspaces", "hyprland/mode"],
   "modules-right": [
     "clock#date",

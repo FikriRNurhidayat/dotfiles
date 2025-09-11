@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Wi-Fi
+Exec=/home/chekoy/.local/share/desktop-scripts/wifi
+Type=Application
+Categories=Desktop;
+Terminal=false
