@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Set keyboard rate
+xset r rate 250 75
+
 # merge in defaults and keymaps
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
@@ -50,9 +53,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Set keyboard rate
-xset r rate 250 75
-
 export AWT_TOOLKIT=MToolkit
 wmname compiz
 
@@ -69,3 +69,5 @@ mkdir -p "$HOME"/.local/share/keyrings
 systemctl --user import-environment DISPLAY
 
 source "$HOME/.profile"
+
+unclutter &

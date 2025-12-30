@@ -5,3 +5,20 @@ alias e="$EDITOR"
 alias conf-dotfiles="cd $DOTFILES && $EDITOR"
 alias ls="ls --color"
 alias yank="xclip -sel clipboard"
+alias v="nvim"
+
+clip() {
+  in=""
+  from=""
+  to=""
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --from) from="$2"; shift 2 ;;
+      --to)   to="$2";   shift 2 ;;
+      *)      in="$1";   shift ;;
+    esac
+  done
+
+  out="${in%.*}_clip.${in##*.}"
+  ffmpeg -i "$in" -ss "$from" -to "$to" -map 0 -c copy -reset_timestamps 1 "$out"
+}

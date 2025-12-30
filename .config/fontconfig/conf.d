@@ -37,7 +37,7 @@
   <alias>
     <family>sans-serif</family>
     <prefer>
-      <family>Iosevka Aile</family>
+      <family>JetBrains Mono</family>
       <family>Sarasa Mono C</family>
       <family>Sarasa Mono J</family>
       <family>Sarasa Mono K</family>
@@ -46,7 +46,7 @@
   <alias>
     <family>serif</family>
     <prefer>
-      <family>Iosevka Etoile</family>
+      <family>JetBrains Mono</family>
       <family>Sarasa Mono Slab C</family>
       <family>Sarasa Mono Slab J</family>
       <family>Sarasa Mono Slab K</family>
@@ -55,10 +55,10 @@
   <alias>
     <family>monospace</family>
     <prefer>
-      <family>Iosevka Term Extended</family>
-      <family>Sarasa Fixed C</family>
-      <family>Sarasa Fixed J</family>
-      <family>Sarasa Fixed K</family>
+      <family>JetBrains Mono</family>
+      <family>Sarasa Mono C</family>
+      <family>Sarasa Mono J</family>
+      <family>Sarasa Mono K</family>
     </prefer>
   </alias>
 </fontconfig>

@@ -32,8 +32,7 @@ setopt SHARE_HISTORY             # Share history between all sessions.
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-PROMPT='› '
+PROMPT='$ '
 
-
-# TODO: Move this
 [[ -f /usr/share/nvm/init-nvm.sh ]] && source /usr/share/nvm/init-nvm.sh
+eval "$(~/.local/bin/mise activate zsh)"

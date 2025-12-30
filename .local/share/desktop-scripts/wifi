@@ -6,7 +6,7 @@ function get_networks {
 }
 
 function get_network {
-  get_networks | dmenu -l 5 -i -p "Wi-Fi"
+  get_networks | dmenu -l 5 -i 
 }
 
 function get_saved_networks {
@@ -15,7 +15,7 @@ function get_saved_networks {
 }
 
 function get_saved_network {
-  get_saved_networks | dmenu -l 5 -i -p "Wi-Fi"
+  get_saved_networks | dmenu -l 5 -i
 }
 
 function forget {
@@ -41,7 +41,7 @@ function connect {
   echo "$saved_network"
 
   if [ -z "$saved_network" ]; then
-    password=$(dmenu -P -p "Password")
+    password=$(dmenu -P)
     nmcli device wifi connect "$network" password "$password"
     if [ $? -eq 0 ]; then
       notify-send "Wi-Fi" "$network connected."
@@ -59,7 +59,7 @@ function connect {
   fi
 }
 
-action=$(echo -e "Connect\nForget" | dmenu -l 5 -i -p "Wi-Fi")
+action=$(echo -e "Connect\nForget" | dmenu -l 5 -i)
 
 if [ -z "$action" ]; then
   exit

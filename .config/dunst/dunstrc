@@ -1,19 +1,19 @@
 [global]
     monitor = 0
     follow = none
-    width = 300
-    height = 300
+    width = 320
+    height = 320
     origin = top-right
     offset = 32x64
     scale = 0
     notification_limit = 20
     progress_bar = true
-    progress_bar_height = 10
+    progress_bar_height = 4
     progress_bar_frame_width = 1
-    progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_min_width = 128
+    progress_bar_max_width = 384
     progress_bar_corner_radius = 0
-    highlight = "#CDD6F4"
+    highlight = "#ebdbb2"
     icon_corner_radius = 0
     indicate_hidden = yes
     transparency = 0
@@ -22,11 +22,11 @@
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 2
-    frame_color = "#A6E3A1"
+    frame_color = "#ebdbb2"
     gap_size = 0
     separator_color = frame
     sort = yes
-    font = Iosevka Term Extended 11
+    font = JetBrains Mono 10
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -61,14 +61,14 @@
 [experimental]
     per_monitor_dpi = false
 [urgency_low]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
+    background = "#32302f"
+    foreground = "#ebdbb2"
     timeout = 10
 [urgency_normal]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
+    background = "#32302f"
+    foreground = "#ebdbb2"
     timeout = 10
 [urgency_critical]
-    background = "#1E1E2E"
-    foreground = "#CDD6F4"
+    background = "#32302f"
+    foreground = "#ebdbb2"
     timeout = 0
