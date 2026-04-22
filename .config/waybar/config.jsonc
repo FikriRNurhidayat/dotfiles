@@ -6,7 +6,7 @@
     "clock#time",
     "clock#week",
     "network",
-    "tray",
+    "tray"
   ],
   "hyprland/workspaces": {
     "all-outputs": true,
@@ -16,7 +16,7 @@
       "1": [],
       "2": [],
       "3": [],
-      "4": [],
+      "4": []
     },
     "format": "{icon}",
     "format-icons": {
@@ -29,8 +29,8 @@
       "7": "雷", // Thunder (Kaminari)
       "8": "光", // Light (Hikari)
       "9": "暗", // Darkness (Yami)
-      "10": "風", // Wind (Kaze)
-    },
+      "10": "風" // Wind (Kaze)
+    }
   },
   "sway/workspaces": {
     "all-outputs": true,
@@ -40,7 +40,7 @@
       "1": [],
       "2": [],
       "3": [],
-      "4": [],
+      "4": []
     },
     "format": "{icon}",
     "format-icons": {
@@ -53,27 +53,27 @@
       "7": "雷", // Thunder (Kaminari)
       "8": "光", // Light (Hikari)
       "9": "暗", // Darkness (Yami)
-      "10": "風", // Wind (Kaze)
-    },
+      "10": "風" // Wind (Kaze)
+    }
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 32,
+    "spacing": 32
   },
   "clock#date": {
-    "format": "{:%d %B %Y}",
+    "format": "{:%d %B %Y}"
   },
   "clock#time": {
-    "format": "{:%H:%M}",
+    "format": "{:%H:%M}"
   },
   "clock#week": {
-    "format": "Week {:%W}",
+    "format": "Week {:%W}"
   },
   "network": {
-    "format-wifi": "󰅟",
-    "format-ethernet": "󰅟",
-    "format-linked": "󰅟",
-    "format-disconnected": "󰅤",
-    "format-alt": "󰅟",
-  },
+    "format-wifi": "Online",
+    "format-ethernet": "Online",
+    "format-linked": "Online",
+    "format-disconnected": "Offline",
+    "format-alt": "Online"
+  }
 }

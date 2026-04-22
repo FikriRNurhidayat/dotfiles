@@ -29,8 +29,8 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-syntax-highlighting
 
-if [ -f "$HOME/.nvm/nvm.sh" ]; then
-    source "$HOME/.nvm/nvm.sh"
+if [ -f "/usr/share/nvm/nvm.sh" ]; then
+    source "/usr/share/nvm/nvm.sh"
 fi
 
 if [ -d "$HOME/.config/environment.d" ]; then

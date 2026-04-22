@@ -2,7 +2,7 @@
 
 * {
   font-family: JetBrains Mono, Symbols Nerd Font Mono, Sarasa Mono, monospace;
-  font-size: 11pt;
+  font-size: 10pt;
   font-weight: bold;
 }
 
@@ -20,19 +20,19 @@ button:hover {
 
 window#waybar {
   background-color: @background;
-  color: @text;
+  color: @foreground;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
 
 #workspaces button {
-  color: @text;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;
   box-shadow: none;
-  padding: 11pt;
-  margin-right: 11pt;
+  padding: 10pt;
+  margin-right: 10pt;
 }
 
 #workspaces button.empty {
@@ -44,7 +44,7 @@ window#waybar {
 }
 
 #workspaces button.visible {
-  color: @text;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;
@@ -52,7 +52,7 @@ window#waybar {
 }
 
 #workspaces button.active {
-  color: @highlight;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;
@@ -60,7 +60,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  color: @text;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;
@@ -69,7 +69,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-  color: @highlight;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;
@@ -77,7 +77,7 @@ window#waybar {
 }
 
 #workspaces button.urgent {
-  color: @red;
+  color: @foreground;
   background: none;
   border: none;
   outline: none;

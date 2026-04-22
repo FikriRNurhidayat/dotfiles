@@ -1,0 +1,7 @@
+#!/bin/sh
+
+video_path="$1"
+video_name=$(basename "${video_path}")
+clip_name=${video_name%.*}
+
+ffmpeg -i "${video_path}" -c copy -map 0 -f segment -segment_time 45 -reset_timestamps 1 "$(dirname ${video_path})/${clip_name}.%03d.mp4" 
