@@ -18,6 +18,10 @@ function get_saved_network {
   get_saved_networks | dmenu -l 5 -i
 }
 
+function scan {
+  nmcli device wifi rescan
+}
+
 function forget {
   network=$(get_saved_network)
   if [ -n "$network" ]; then
@@ -59,13 +63,16 @@ function connect {
   fi
 }
 
-action=$(echo -e "Connect\nForget" | dmenu -l 5 -i)
+action=$(echo -e "Connect\nForget\nScan" | dmenu -l 5 -i)
 
 if [ -z "$action" ]; then
   exit
 fi
 
 case "$action" in
+  "Scan")
+    scan
+    ;;
   "Connect")
     connect
     ;;

@@ -6,6 +6,7 @@ alias conf-dotfiles="cd $DOTFILES && $EDITOR"
 alias ls="ls --color"
 alias yank="xclip -sel clipboard"
 alias v="nvim"
+alias vim="nvim"
 
 clip() {
   in=""

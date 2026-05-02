@@ -1,5 +1,5 @@
-dmenu.background:    #32302f
-dmenu.foreground:    #ebdbb2
-dmenu.selbackground: #32302f
-dmenu.selforeground: #98971a
-dmenu.border:        #ebdbb2
+dmenu.background:    #000000
+dmenu.foreground:    #ffffff
+dmenu.selbackground: #ffffff
+dmenu.selforeground: #000000
+dmenu.border:        #ffffff
