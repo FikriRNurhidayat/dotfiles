@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Utility
+Exec=/home/chekoy/.local/share/desktop-scripts/utility
+Type=Application
+Categories=Desktop;
+Terminal=false

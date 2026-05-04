@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd $HOME/.dotfiles
-stow --no-folding --target="$HOME" -S .
+stow --no-folding --adopt --target="$HOME" -S .

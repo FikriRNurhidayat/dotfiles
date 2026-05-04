@@ -1,0 +1,23 @@
+#!/bin/sh
+
+function generate_uuid () {
+  uuid=`node -e 'console.log(require("crypto").randomUUID())'`
+  echo $uuid | xclip -sel clipboard
+  notify-send "Utility" "${uuid} copied to the clipboard."
+}
+
+actions="Generate UUID"
+action=$(echo -e "$actions" | dmenu -l 5 -i)
+
+if [ -z "$action" ]; then
+  exit
+fi
+
+case "$action" in
+  "Generate UUID")
+    generate_uuid
+    ;;
+  *)
+    echo "No action selected."
+    ;;
+esac
