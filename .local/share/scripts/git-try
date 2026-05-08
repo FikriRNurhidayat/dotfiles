@@ -1,0 +1,25 @@
+#!/bin/sh
+
+REPOSITORY_URL=$1
+
+case "${REPOSITORY_URL}" in
+  https://*)
+    REPOSITORY_SLUG="${REPOSITORY_URL#https://*/}"
+    ;;
+  *@*:*)
+    REPOSITORY_SLUG="${REPOSITORY_URL#*:}"
+    ;;
+  ssh://*)
+    REPOSITORY_SLUG="${REPOSITORY_URL#ssh://*/}"
+    ;;
+esac
+
+if [ -z "${REPOSITORY_SLUG}" ]; then
+  exit;
+fi
+
+REPOSITORY_SLUG="${REPOSITORY_SLUG%*.git}"
+REPOSITORY_DIR="${HOME}/Tries/${REPOSITORY_SLUG}"
+
+mkdir -p ${REPOSITORY_DIR}
+git clone --depth=1 ${REPOSITORY_URL} ${REPOSITORY_DIR}
